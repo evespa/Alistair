@@ -1,0 +1,1609 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphics}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{subfig}
+\usepackage{eurosym,units}
+\usepackage{colortbl,color}
+\usetheme{material}
+\useLightTheme
+\usePrimaryRed
+\useAccentGreen
+
+\renewcommand{\theenumii}{\alph{\enumii}}
+\defbeamertemplate{itemize subitem}{dash}{--}
+\defbeamertemplate{itemize subsubitem}{dash}{--}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[dash]
+\setbeamertemplate{itemize subsubitem}[dash]
+\setbeamertemplate{enumerate item}{\arabic{enumi}.}
+\setbeamertemplate{enumerate subitem}{(\alph{enumii})}
+\usefoottemplate{}
+
+%\usecolortheme{owl}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newcommand{\indicator}[1]{\mathrm{1}\left\{{#1}\right\}}
+
+
+
+\setbeamertemplate{headline}{}
+\usenavigationsymbolstemplate{}
+
+\title{\LARGE Econ 2220: Experimental Economics \\ Dynamic Games}
+\author{Alistair J. Wilson }
+\date{Fall 2018}
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Future payoffs determined by actions today}
+\begin{card}
+    \begin{itemize}
+    \item In infinitely repeated games, the strategic environment each period
+    is constant
+    \item In dynamic environments, the game being played evolves through time
+    \item Dynamic incentives can act through the state transition,  other's actions, or a combination
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Examples}
+\begin{card}
+ Prisoner's dilemma stage-game with increasing stakes based on previous cooperation
+\end{card}
+\begin{card}
+Common-pool problems:
+    \begin{itemize}
+    \item State is the number of fish in a pond
+    \item Participants choose extraction levels each period
+    \item The stock of fish next period depends on extraction today
+    \item Efficient outcome to grow the stock, and farm the resource
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Dynamic Game Primitives]
+\begin{itemize}
+    \item Players $i\in\mathcal{I}$
+    \item Periods $0,1,\ldots,t,\ldots$
+    \item Action $a_{t}^{i}\in A_{i}$; with $a_t\in\mathcal{A}=\times_{i\in\mathcal{I}}\mathcal{A}_{i}$
+    \item State $\omega_{t}\in\Omega$
+    \item State Transition Rule $\psi:\Omega\times\mathcal{A}\rightarrow\Delta\Omega$,
+   so that $\omega_{t+1}=\psi(\omega_{t},a_{t})$
+    \item Period payoffs: $\pi_{t}^{i}=u^{i}(a_{t},\omega_{t})$
+    \item History: $h_{t}=\left((a_{1},\omega_{1}),...,(a_{t-1},\omega_{t-1})\right)$
+\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Dutta  (JET 1995)]
+Folk theorem result holds for general stochastic games
+\end{card}
+\end{frame}
+
+\begin{frame}{Dynamic Game}
+\begin{card}
+Whereas infinitely repeated games look at \emph{\color{primary}sub-game perfect} outcomes, dynamic games focus on refinement: \emph{\color{primary}Markov Perfection}
+\end{card}
+
+\begin{card}
+Markov Strategy is a profile ($\alpha:\Omega\rightarrow\mathcal{A}$), so that players actions:
+    \begin{itemize}
+    \item does not depend on any element of $h_{t}$
+    \item stationary (no time dependence)
+    \item reacts only to the contemporaneous state $\omega_{t}$
+    \end{itemize}
+\end{card}
+
+\end{frame}
+
+
+\begin{frame}{Why the Markov Perfect restriction?}
+\begin{card}
+ Philosophically:
+    \begin{itemize}
+    \item ``Simplest form of behavior consistent with rationality''
+    \item ``Bygones are bygones''
+    \item ``Minor causes should have minor effects''
+    \end{itemize}
+\end{card}
+
+\end{frame} 
+\begin{frame}{Why the Markov Perfect restriction?}
+\begin{card}
+Practically:
+\begin{itemize}
+\item Easy to solve with dynamic programming tools
+\item Reduces multiplicity
+\item Allows for econometric estimation of models
+\item Markov restriction can in principle be tested
+\end{itemize}
+\end{card}
+\end{frame} 
+
+\begin{frame}{Markov Strategies: Practical Uses}
+    \begin{card}
+    Main solution concept in applied theory environments that evolve over time
+    \begin{itemize}
+        \item Oligopoly with investment
+        \item Political economy models with durable public goods
+        \item Environmental economics
+    \end{itemize}
+    \end{card}
+    \begin{card}
+    Also used for econometric estimation in structural IO models
+    \end{card}
+\end{frame}
+
+
+
+\begin{frame}{Markov Selection }
+\begin{card}
+    Potential issues:
+    \begin{itemize}
+    \item Inefficiency (does not necessarily lead to efficient outcomes)
+    \item Lack of precise evidence for the restriction
+    \item Policy recommendations can depend on equilibrium selection
+    \item What exactly is the correct set of states?
+        \begin{itemize}
+        \item (for Maskin \& Tirole states must be payoff relevant)
+        \end{itemize}
+    \end{itemize}
+\end{card}
+
+\end{frame}
+
+\begin{frame}
+\begin{card}
+ Can experiments tell us anything about selection in such environments?
+\end{card}
+\end{frame}
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+\begin{card}
+    \begin{itemize}
+    	\item Examine a dynamic public good problem
+    	\item Round payoff is given by
+    	$$ u_i(x^j_t,g_t)=x^j_t+\alpha \cdot \sqrt{g_t}$$
+        	\begin{itemize}
+        	\item $g_t$ is the stock of the public good
+        	\item $x^j_t$ is private consumption
+        	\end{itemize}
+    	\item Payoff for supergame is
+    	$$ \sum_{t=1}^{\infty} \delta^{t-1} \cdot u_i(x^j_t,g_t) $$
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+\begin{card}
+\begin{itemize}
+	\item Initially public good has zero investment $g_0=0$
+	\item Each period, the agents receive income of $w$ which they allocate to
+	\begin{itemize}
+		\item $x^j_t$ private consumption
+		\item $w-x^j_t$ contribution to public good
+	\end{itemize}\pause
+	\item The public good grows according to:
+	$$ g_t=g_{t-1}+\sum^n_{j=1} (w-x^j_t)$$
+\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+\begin{card}
+Like a standard public goods problem, there is a static externality
+		\begin{itemize}
+			\item Internalize opportunity cost of contributing to public good
+			\item Do not internalize public benefit
+		\end{itemize}
+\end{card}
+		\pause
+    \begin{card}
+    But there is also a dynamic externality:
+    	\begin{itemize}
+    		\item My contributions today will dissuade others from contributing in the future as public-good has diminishing returns
+    	\end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+\begin{card}
+ A social planner would have all agents fully invest in the public good until the marginal costs of further contributions equal the marginal gains
+ \end{card}
+\begin{card}
+So efficient path has full investment until socially desirable level  is reached:
+		$$	y^\star_P=\left(\dfrac{\alpha n}{2(1-\delta)}\right)^2$$
+\end{card}
+\end{frame}
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+\begin{card}
+	\begin{itemize}
+		\item Individuals will instead seek to maximize their own payoffs
+		\item Statically, marginal gain to investment by the individual has return $\tfrac{1}{n}$th the size of planner's \pause
+		\item But individuals will also have to account for how their behavior affects others future behavior\pause
+		\item Plus they may be able to clawback their previous contributions
+	\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+	\begin{card}
+Look at the case where agents investments in the public good are constrained so that
+		$$ x\in\left[0,w+\tfrac{g}{n}\right] $$
+ Call this reversible investment case, as agents can remove their share of the public good $\tfrac{g}{n}$.
+\end{card}
+\end{frame}
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+	\begin{card}
+		Looking at symmetric, continuous Markov-perfect equilibria
+		\begin{itemize}
+			\item Want strategies to only depend on last-period stock $g$
+			\item Look for solutions where the individual's value function is concave
+		\end{itemize}
+		\end{card} \pause
+		\begin{card} Optimal path has stock of public good following the transition
+			$$g_t=\min\left\{n\cdot w+g_{t-1} , \left(\dfrac{\alpha n}{2(n-\delta)}\right)^2  \right\}<y^\star_P $$
+	\end{card}
+\end{frame}
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+	\begin{card}
+	Contrast this with the case where investment in the public-good is irreversible, so
+		$$x\in\left[0,w\right]$$ \pause
+	There is now no fear that your own contributions will be expropriated by others
+	\end{card}
+		\pause
+	\begin{card}
+	Steady-state investment level is now given by $$y^\star_I=\left(\dfrac{\alpha}{2(1-\delta)}\right)^2<y^\star_P$$
+	\end{card}
+\end{frame}
+
+
+\begin{frame}{Battaglini, Nunnari and Palfrey (2016)}
+\begin{card}
+So Markov-perfect equilibria are not efficient, where the results have teh steady-state order: 
+$$ y^\star_P>y^\star_I>y^\star_R>0$$
+\end{card} \pause
+\begin{card} But other SPE can be efficient
+		\begin{itemize}
+    		\item Reversible investment allow for conditional punishments!
+    		\item For $\delta$ large enough can sustain the planner's solution through a Markov-trigger
+    		\item With irreversible, deviations cannot be punished this way
+	\end{itemize}
+	\end{card}
+\end{frame}
+
+
+\begin{frame}
+\begin{card}[Experimental Details]
+	\begin{itemize}
+		\item Caltech students
+		\item Groups of $3$ or $5$
+		\item $\delta=\tfrac{3}{4}$ is probability of another round
+		\item Receive $20$ (16) units per period in 3 (5) person treatment
+		\item $\alpha=4$
+		\item Irreversible or Reversible environment
+	\end{itemize}
+	\end{card}
+\end{frame}
+
+\begin{frame}{Treatment Design}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{./i/BNPtbl1.png}
+    \end{center}
+\end{card}
+\begin{card}
+	\begin{itemize}
+	\item No effect from $n$ in  IIE
+	\item Planner$>$ IIE $>$ RIE
+	\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Results in round 9--11}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{./i/BNPtbl2.png}
+    \end{center}
+\end{card}
+\begin{card}
+	\begin{itemize}
+    	\item Median level in rounds 9--11 (conditional on reaching it)
+    	\item Planner $>$ IIE $>$ RIE
+	\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Median stock $g$ through time}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=0.99\textwidth]{./i/BNPfig1.png}
+    \end{center}
+\end{card}
+
+\begin{card}
+ Both treatments inefficient, IIE$>$RIE
+\end{card}
+\end{frame}
+
+\begin{frame}{Normalized Efficiency}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=0.99\textwidth]{./i/BNPfig2.png}
+    \end{center}
+\end{card}
+
+\begin{card}
+ Both treatments inefficient, IIE$>$RIE
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Median individual investments through time}
+ \begin{card}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{./i/BNPfig3.png}
+    \end{center}
+\end{card}
+
+\begin{card}
+    Investment drops off with time
+\end{card}
+\end{frame}
+
+\begin{frame}{Median individual investments through time}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{./i/BNPfig4.png}
+    \end{center}
+\end{card}
+
+\begin{card}
+Overinvestment relative to MPE prediction in both
+    \end{card}
+\end{frame}
+\begin{frame}{Median individual investments through time}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{./i/BNPtbl4.png}
+    \end{center}
+\end{card}
+
+    \begin{card}
+Evidence for history dependence
+    \end{card}
+\end{frame}
+
+\begin{frame}{More-focused test of Markov}
+    \begin{card}
+    	\begin{itemize}
+        	\item Add a static version of the problem
+        	\item Use the contination value  $v_R(g)$ for the reversible investment dynamic game
+        	\item Subjects asked to choose contribution $w-x$ where their payoff is
+    		$$ x_j+ \alpha \sqrt{\left(g_0+n\cdot w-\sum_{j=1}^n x_j\right)}+v_R\left(g_0+n\cdot w-\sum_{j=1}^n x_j \right) $$
+    	\end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Median Investment by stock}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=0.99\textwidth]{./i/BNPfig6.png}
+    \end{center}
+\end{card}
+
+
+\begin{card}
+   One-shot results more consistent with theory
+\end{card}
+\end{frame}
+
+\begin{frame}{Summary}
+    \begin{card}
+At the end of the day, I find this experiment more informative about behavior in this specific scenario (growing a public good)
+    \end{card}
+    
+\begin{card}
+Environment is a very complicated dynamic game, and hard to compare with what we know about infinitely repeated games
+\end{card}
+\end{frame}
+
+\begin{frame}{Vespa (2020) }
+\begin{card}
+	\begin{itemize}
+		\item Looks at a common-pool problem
+		\item In each period $t=1,2,3\ldots$ two agents separately decide on a share of the resource to extract: $\alpha^t_i$
+		\item Given a state of size $s^t$, consumption in period $t$ is $\alpha_i^t\cdot s^t$ 
+		\item State grows at a rate $r$: $$s^{t+1}=(1+r)(1-\alpha^t_1-\alpha^t_2)s^t$$
+	\end{itemize}
+	Utility for the agent given by
+			$$\sum_{t=1}^\infty \delta^{t-1} \ln \left( \alpha^t_i s^t \right) $$
+	\end{card}
+\end{frame}
+
+\begin{frame}{Vespa (2020) }
+\begin{card}
+	\begin{itemize}
+		\item Markov strategy profile here is an extraction choice for every possible value of the stock $s$
+		\item Focuses on continuous symmetric MPE where (via the log utility for consumption) policy is linear in s:
+		$$ \sigma_M(s)=\alpha_M \cdot s=\frac{1-\delta}{2-\delta}s $$
+		\item Planner would choose the efficient extraction level
+		$$\sigma_C(s)=\alpha_C \cdot s=\frac{1-\delta}{2}s$$
+	\end{itemize}
+	\end{card}
+\end{frame}
+
+\begin{frame}{Vespa (2020) }
+	\begin{card}
+    Discretizes the game to a choice of three extraction levels under $\delta=\tfrac{3}{4}$
+		\begin{itemize}
+			\item Collusive/efficient level: $\alpha_C= \tfrac{1}{8}$
+			\item MPE level: $\alpha_M= \tfrac{1}{5}$
+			\item Myopic level: $\alpha_H= \tfrac{1}{2}$
+		\end{itemize}
+Has lower bound on the state to stop unbounded negative payoffs!
+		\end{card}
+\end{frame}
+
+
+\begin{frame}
+    \begin{card}{Experimental Details}
+    	\begin{itemize}
+    		\item NYU students
+    		\item Average payoff of \$26
+    		\item One-period ahead strategy method
+    		\item Treatment variables are
+    		\begin{itemize}
+    			\item interest rate
+    			\item availability of third action $\alpha_H$
+    		\end{itemize}
+    	\end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Design Table}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=0.99\textwidth]{./i/Vtbl1.png}
+    \end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Interface}
+\centering \cardImg{./i/Vfig1a.pdf}{0.85\textwidth}
+\end{frame}
+
+\begin{frame}{Theory}
+\centering \cardImg{./i/Vfig2.png}{0.8\textwidth}
+\end{frame}
+
+\begin{frame}{Strategies used by subjects}
+\begin{card}
+    \begin{center}
+        \includegraphics[width=0.99\textwidth]{./i/Vtbl5a.png}
+    \end{center}
+\end{card}
+
+\begin{card}
+    \begin{itemize}
+    	\item Estimated as mixture model
+    	\item MPE extraction is the most common strategy across treatments
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Vespa \& Wilson (2019,2020) }
+\begin{card}
+Connects behavior to the infinitely repeated
+games literature.
+\end{card}
+\begin{card}
+Simplest dynamic game we could think of.
+
+\begin{itemize}
+\item Two agents, $\mathcal{I}=\left\{ 1,2\right\} $
+
+\begin{itemize}
+\item Two actions, $\mathcal{A}_{1}=\mathcal{A}_{2}$\only<1>{$=\left\{ \mbox{Cooperate},\mbox{Defect}\right\}$}\only<2>{$=\left\{ C,D \right\}$}
+\item Two states, $\Omega$\only<1>{$=\left\{ \mbox{Low},\mbox{High}\right\}$}\only<2>{$=\left\{ L,H \right\}$} \pause
+\end{itemize}
+\item Any simpler in any variable and we would not have a dynamic game
+\end{itemize}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Fixed across environments}
+    \begin{card}
+    \begin{itemize}
+    \item Infinite time horizon
+    \item Two agents: 1,2
+    \item Two states: \textcolor{red}{Low}, \textcolor{blue}{High}
+    \item Initial state: \textcolor{red}{Low}
+    \item Discounting: $\delta=75\%$\pause
+    \item Try to hold constant some of the strategic tensions
+    \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}
+
+    \begin{card}{Experimental Details}
+    \begin{itemize}
+    \item Three sessions per treatment
+    \item 14 subjects per session, EBEL-UCSB
+    \item 350 subjects total
+    \item Expected earnings: \$18 (between 75-90 minutes)
+    \item 15 repetitions of the supergame
+    \item Partial block design
+    \end{itemize}
+    \end{card}
+\end{frame}
+
+
+\begin{frame}{Structure of a session}
+\begin{card}
+\begin{center}
+\begin{tabular}{c|c|c|c|ccc|c|c|c|}
+\multicolumn{1}{c}{} & \multicolumn{9}{c}{Cycle}\\ 
+\multirow{14}{*}{\begin{turn}{90}
+Round
+\end{turn}} & \textbf{\tiny{}1} & \textbf{\tiny{}2} & \textbf{\tiny{}3} & \multicolumn{3}{c|}{\textbf{\tiny{}...}} & \textbf{\tiny{}13} & \textbf{\tiny{}14} & \textbf{\tiny{}15}\\ 
+\cline{2-10}
+ & \textbf{\textcolor{blue}{\tiny{}1}} & \textbf{\textcolor{blue}{\tiny{}1}} & \textbf{\textcolor{blue}{\tiny{}1}} &  &  &  & \textbf{\textcolor{blue}{\tiny{}1}} & \textbf{\textcolor{blue}{\tiny{}1}} & \textbf{\textcolor{blue}{\tiny{}1}}\\ 
+ & \textbf{\textcolor{blue}{\tiny{}2}} & \textbf{\textcolor{blue}{\tiny{}2}} & \textbf{\textcolor{blue}{\tiny{}2}} &  &  &  & \textbf{\tiny{}2} & \textbf{\textcolor{blue}{\tiny{}2}} & \textbf{\textcolor{blue}{\tiny{}2}}\\ 
+ & \textbf{\textcolor{blue}{\tiny{}3}} & \textbf{\tiny{}3} & \textbf{\textcolor{blue}{\tiny{}3}} &  &  &  & \textbf{\tiny{}3} & \textbf{\textcolor{blue}{\tiny{}3}} & \textbf{\textcolor{blue}{\tiny{}3}}\\ 
+ & \textbf{\textcolor{blue}{\tiny{}4}} & \textbf{\tiny{}4} & \textbf{\textcolor{blue}{\tiny{}4}} &  &  &  & \textbf{\tiny{}4} & \textbf{\textcolor{blue}{\tiny{}4}} & \textbf{\textcolor{blue}{\tiny{}4}}\\ 
+ & \textbf{\textcolor{blue}{\tiny{}5}} & \textbf{\tiny{}5} & \textbf{\textcolor{blue}{\tiny{}5}} &  &  &  & \textbf{\tiny{}5} & \textbf{\textcolor{blue}{\tiny{}5}} & \textbf{\textcolor{blue}{\tiny{}5}}\\ 
+ & \textbf{\textcolor{blue}{\tiny{}6}} &  & \textbf{\textcolor{blue}{\tiny{}6}} &  &  &  &  & \textbf{\textcolor{blue}{\tiny{}6}} & \\ 
+ & \textbf{\textcolor{blue}{\tiny{}7}} &  &  &  &  &  &  & \textbf{\textcolor{blue}{\tiny{}7}} & \\ 
+ & \textbf{\textcolor{blue}{\tiny{}8}} &  &  &  &  &  &  & \textbf{\textcolor{blue}{\tiny{}8}} & \\ 
+\end{tabular}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}
+\begin{center}
+\includegraphics[height=0.7\textwidth]{./i/FlowChart1.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Endogenous Dynamic PD-CC}
+
+\begin{center}
+\begin{table}
+\centering{}\subfloat{
+\begin{tabular}{ccP{0.14\textwidth}|P{0.14\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.14\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \small \textcolor{blue}{100,100} & \multicolumn{1}{P{0.14\textwidth}|}{\small \textcolor{red}{30, 125}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \small \textcolor{red}{125, 30} & \multicolumn{1}{P{0.14\textwidth}|}{\small \textcolor{red}{60,60}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{
+\begin{tabular}{ccP{0.14\textwidth}|P{0.15\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.14\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \small \textcolor{blue}{200, 200} & \multicolumn{1}{P{0.15\textwidth}|}{\small \textcolor{blue}{130, 250}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \small \textcolor{blue}{250, 130} & \multicolumn{1}{P{0.15\textwidth}|}{\small \textbf{\textcolor{red}{190, 190}}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+\end{center}
+
+\begin{card}
+\[
+\psi\left(\omega ,a \right)=\begin{cases}
+\mbox{High} & \mbox{if }a=\left(C,C\right),\omega=\mbox{=Low}\\
+\mbox{Low} & \mbox{if }a=\left(D,D\right), \omega=\mbox{\ensuremath{\omega}=High}\\
+\omega & \mbox{otherwise}
+\end{cases}
+\]
+\end{card}
+
+\end{frame}
+
+
+\begin{frame}{Dynamic PD Game CC: Graphical Representation}
+\begin{card}
+\begin{center}
+	\includegraphics<1>[width=0.6\textwidth]{./i/col_GamePayoffs1.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Endogenous Dynamic PD-CC}
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{blue}{100} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{30}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{60}}\\ 
+\cline{3-4}
+\end{tabular}
+}\subfloat{
+\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{blue}{200} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{blue}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{blue}{250} & \multicolumn{1}{P{0.1\textwidth}|}{\textbf{\textcolor{red}{190}}}\\ 
+\cline{3-4}
+\end{tabular}
+}
+\end{table}
+
+\par\end{center}
+
+\[
+\psi\left(\mbox{\ensuremath{\omega}},a\right)=\begin{cases}
+\mbox{High} & \mbox{if }a=\left(C,C\right),\mbox{\ensuremath{\omega}=Low}\\
+\mbox{Low} & \mbox{if }a=\left(D,D\right),\mbox{\ensuremath{\omega}=High}\\
+\omega & \mbox{otherwise}
+\end{cases}
+\]
+
+
+
+Unique symmetric MPE: $\alpha_{i}^{\star}(\omega)=\begin{cases}
+\mbox{C} & \mbox{if \ensuremath{\omega}=Low}\\
+\mbox{D} & \mbox{if \ensuremath{\omega}=High}
+\end{cases}$
+
+\end{frame}
+
+\begin{frame}{Other SPE?}
+
+
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{blue}{100} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{30}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{60}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{blue}{200} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{blue}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{blue}{250} & \multicolumn{1}{P{0.1\textwidth}|}{\textbf{\textcolor{red}{190}}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+
+\par\end{center}
+\begin{itemize}
+\item Many other SPE
+
+\begin{itemize}
+\item Can sustain efficient outcome $(C,C)$ using history-dependent strategies
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{MPE in En-DPD-CC}
+
+\begin{card}If the MPE is selected we should expect to see:
+		\begin{itemize}
+			\item Full cooperation in low state
+			\item No cooperation in high state
+			\item No difference in rate of cooperation through the cycle
+		\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Results: Cooperation by State}
+\begin{card}
+    \begin{center}
+    	\includegraphics[width=1\textwidth]{./i/col_bar_StateCoop_block_EnDPD_1.pdf}
+    \end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Subject-level Cooperation }
+\begin{card}
+    \begin{center}
+    	\includegraphics[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_EnDPD_1.pdf}
+    \end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Strategies: SFEM Mixture Model}
+\begin{card}
+Popular pure strategy Markov:
+\begin{itemize}
+\item C-C 14.9\%
+\item C-D 7.4\% (the MPE)
+\item D-D/D-C 7.1\%
+\end{itemize}
+\end{card}
+\begin{card}
+ Popular history-dependent strategies
+\begin{itemize}
+\item Grim trigger 19.2\%
+\item C-Alternate-in-high, grim trigger 20.7\%
+\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Result 1]
+Not all dynamic games lead to the selection of MPE outcomes;
+still observe a lot of conditional cooperation
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}
+\begin{center}\includegraphics[height=0.7\textwidth]{./i/FlowChart2.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{En-DPD-CC $\rightarrow$ En-DPD}
+\begin{card}[Manipulation 1]
+Alter the efficient frontier in high
+   \begin{itemize}
+    \item Increase temptation to defect in high
+    \item Make efficient action harder: C/D alternation in high
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Endog-Dynamic-PD (Pivot)}
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{blue}{100} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{30}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{60}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{blue}{200} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{blue}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{blue}{\only<1>{250}\only<2>{280}} & \multicolumn{1}{P{0.1\textwidth}|}{\textbf{\textcolor{red}{190}}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+\end{center}
+
+
+\textrm{
+\[
+\psi\left(\mbox{\ensuremath{\omega}},a\right)=\begin{cases}
+\mbox{High} & \mbox{if }a=\left(C,C\right),\mbox{\ensuremath{\omega}=Low}\\
+\mbox{Low} & \mbox{if }a=\left(D,D\right),\mbox{\ensuremath{\omega}=High}\\
+\omega & \mbox{otherwise}
+\end{cases}
+\]
+\pause}
+
+
+Unique MPE still: $\alpha_{i}^{\star}(\omega)=\begin{cases}
+\mbox{C} & \mbox{if \ensuremath{\omega}=Low}\\
+\mbox{D} & \mbox{if \ensuremath{\omega}=High}
+\end{cases}$
+
+\end{frame}
+
+\begin{frame}{Dynamic PD Game-1}
+\begin{card}
+    \begin{center}
+    	\includegraphics[width=0.6\textwidth]{./i/col_GamePayoffs1.pdf}
+    \end{center}
+\end{card}
+\end{frame}
+\begin{frame}{Dynamic PD Game-2}
+\begin{card}
+    \begin{center}
+    	\includegraphics[width=0.6\textwidth]{./i/col_GamePayoffs2.pdf}
+    \end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Results: Cooperation by State}
+\begin{card}
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{./i/col_bar_StateCoop_block_EnDPD_2.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Subject Cooperation:En-DPD }
+\begin{card}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_EnDPD_2.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Strategies}
+\begin{card}
+Popular pure strategy Markov:
+
+\begin{itemize}
+\item C-C: $14.9\%\rightarrow7.9\%$
+\item C-D: $7.1\%\rightarrow23.5\%$
+\item D-D: $7.4\%\rightarrow4.7\%$
+\end{itemize}
+\end{card}
+
+\begin{card} Popular history-dependent strategies
+\begin{itemize}
+\item Grim trigger $19.2\%\rightarrow13.8\%$
+\item C-Alternate-in-high, grim trigger $20.7\%\rightarrow0\%$
+\item D-Alternate-in-high, grim trigger $1.5\%\rightarrow16.2\%$
+\item C-Alternate-in-high, MPE-trigger $5.8\%\rightarrow28.7\%$
+\end{itemize}
+\end{card}
+\end{frame}
+
+
+\begin{frame}
+\begin{card}[Result 2]
+Conditional cooperation here moves to support the efficient
+outcome, though C/D alternation in High was common even when joint
+cooperation was efficient
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}
+\begin{center}
+\includegraphics[height=0.7\textwidth]{./i/FlowChart3.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{En-DPD $\rightarrow$ En-DPD-HT}
+\begin{card}
+\begin{itemize}
+\item From En-DPD (the pivot) only (D,D) in high causes Low next round
+\item Subjects can unilaterally impose the high state once there
+\end{itemize}
+\end{card}
+\begin{card}[Manipulation 2]
+ Change transition rule in high state
+    \begin{itemize}
+    \item Require joint cooperation to stay in High
+    \item (D,D), (C,D) and (D,C) in High lead to Low next round
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Endog-Dynamic-PD$\rightarrow$}
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{blue}{100} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{30}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{60}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{blue}{200} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{blue}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{blue}{280} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{190}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+
+\par\end{center}
+
+\begin{center}
+\[
+\psi\left(\mbox{\ensuremath{\omega}},a\right)=\begin{cases}
+\mbox{High} & \mbox{if }a=\left(C,C\right),\mbox{\ensuremath{\omega}=Low}\\
+\mbox{Low} & \mbox{if }a=\left(D,D\right),\mbox{\ensuremath{\omega}=High}\\
+\omega & \mbox{otherwise}
+\end{cases}
+\]
+
+\par\end{center}
+
+$C-D$ unique MPE.
+
+\end{frame}
+
+\begin{frame}{Endog-Dynamic-PD-2$\rightarrow$Endog-Dynamic-PD-HT}
+
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{blue}{100} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{30}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{60}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{blue}{200} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{red}{280} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{190}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+
+\par\end{center}
+
+\begin{center}
+\[
+\psi\left(\mbox{\ensuremath{\omega}},a\right)=\begin{cases}
+\mbox{High} & \mbox{if }a=\left(C,C\right)\\
+\mbox{Low} & \mbox{otherwise.}
+\end{cases}
+\]
+
+\par\end{center}
+\begin{itemize}
+\item $C-D$ still MPE, but $D-D$ now also
+\item $D-C$ is an MPE, but starting state is \emph{Low}
+\end{itemize}
+\end{frame}
+\begin{frame}{Results: Cooperation by State}
+\begin{card}
+    \begin{center}
+    	\includegraphics[width=1.0\textwidth]{./i/col_bar_StateCoop_block_EnDPD_H.pdf}
+    \end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Subject Cooperation:En-DPD-HT }
+\begin{card}
+    \begin{center}
+    	\includegraphics<2>[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_EnDPD_H.pdf}
+    \end{center}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Strategies (En-DPD$\rightarrow$En-DPD-HT)}
+
+    \begin{card}
+     Popular pure strategy Markov:
+    \begin{itemize}
+    \item C-C: $7.9\%\rightarrow24.5\%$
+    \item C-D: $23.5\%\rightarrow2.0\%$
+    \item D-D: $4.7\%\rightarrow2.4\%$
+    \end{itemize}
+    \end{card}
+    \begin{card}
+    Popular history-dependent strategies
+    
+    \begin{itemize}
+    \item Grim trigger $13.8\%\rightarrow34.0\%$
+    \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}
+
+\begin{card}[Result 3:]
+Reducing the IR payoff increases cooperation, punishments
+used are harsher
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}
+\begin{center}\includegraphics[height=0.7\textwidth]{./i/FlowChart4.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{En-DPD $\rightarrow$ En-DPD-X}
+
+\begin{card}
+Computational complexity literature identifies complexity as one reason
+to select MPE (in particular the number of payoff relevant states)
+\end{card}
+\pause
+
+\begin{card}[Manipulation 3:] 
+Make the game more complex
+    \begin{itemize}
+    \item Same game as En-DPD with added exogenous shocks each round
+    \item Draw a number $x$ uniformly over $X=\left\{ -5,-4,\ldots,4,5\right\} $
+    \item 2 states $\rightarrow$ 22 states.
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Complex Endog-Dynamic-PD}
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{blue}{100+x} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{30+x}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125-x} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{60-x}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.12\textwidth}|P{0.12\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+ &  & \multicolumn{1}{P{0.12\textwidth}}{} & \\ 
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.12\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{blue}{200+2x} & \multicolumn{1}{P{0.12\textwidth}|}{\textcolor{blue}{130+2x}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{blue}{280-2x} & \multicolumn{1}{P{0.12\textwidth}|}{\textbf{\textcolor{red}{190-2x}}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+\end{center}
+
+\[
+\psi\left(\mbox{\ensuremath{\omega}},a\right)=\begin{cases}
+\left(\mbox{High},y\right) & \mbox{if }a=\left(C,C\right),\omega=\left(\mbox{Low},x\right)\\
+\left(\mbox{Low},y\right) & \mbox{if }a=\left(D,D\right),\omega=\left(\mbox{High},x\right)\\
+\left(\omega_{1},y\right) & \mbox{otherwise}
+\end{cases}
+\]
+\begin{itemize}
+\item $y\perp x$, uniformly distributed on $\left\{ -5,-4,\ldots,4,5\right\} $
+\item $C-D$ in \emph{Low/High} and ignoring $x$ an MPE (not unique though)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Results: Cooperation by State}
+\begin{card}
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{./i/col_bar_StateCoop_block_EnDPD_C.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Strategies (En-DPD$\rightarrow$En-DPD-X)}
+\begin{card}
+ Markov strategies:
+\begin{itemize}
+\item C-C: $7.9\%\rightarrow31.4\%$
+\item \textbf{C-D:} $23.5\%\rightarrow19.1\%$
+\item D-D\textbf{:} $4.7\%\rightarrow2.7\%$
+\end{itemize}
+\end{card}
+\begin{card}
+Popular history-dependent strategies
+\begin{itemize}
+\item MPE-trigger $7.8\%\rightarrow19.0\%$
+\item C-Alternate, MPE-trigger $23.4\%\rightarrow14.2\%$
+\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Result 4]
+Small changes to the games payoffs lead to small deviations
+in behavior even with much increased complexity. Increased complexity
+does not lead to increased selection of MPE.
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Dynamic PD game summary}
+
+\begin{card}
+Across a series of manipulations to a similar Dynamic PD game we find
+effects over:
+
+\begin{itemize}
+\item where conditional cooperation is targeted
+\item the types of punishments that support it
+\end{itemize}
+But little differences in rate of MPE selection. Turn instead to changing the nature of the dynamics
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}
+\begin{center}\includegraphics[height=0.7\textwidth]{./i/FlowChart5.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{En-DPD-2 $\rightarrow$ Ex-DPD-2}
+\begin{card}
+ In the En-DPD games the transitions are endogenous, so there is a
+dynamic externality (actions affect the state, which affects the other player's payoff)
+
+What are the effects of removing the dynamic externality?
+\end{card}
+\pause
+
+    \begin{card}[Manipulation 4:] 
+    Eliminate the dynamic externality
+        \begin{itemize}
+        \item Exogenous random transition between states
+        \item Choose probabilities to match observed state frequency in En-DPD
+        \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Endog-Dynamic-PD}
+
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{blue}{100} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{30}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{60}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{blue}{200} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{blue}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{blue}{280} & \multicolumn{1}{P{0.1\textwidth}|}{\textbf{\textcolor{red}{190}}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+
+\par\end{center}
+
+
+\[
+\psi\left(\mbox{\ensuremath{\omega}},a\right)=\begin{cases}
+\mbox{High} & \mbox{if }a=\left(C,C\right),\mbox{\ensuremath{\omega}=Low}\\
+\mbox{Low} & \mbox{if }a=\left(D,D\right),\mbox{\ensuremath{\omega}=High}\\
+\omega & \mbox{otherwise}
+\end{cases}
+\]
+
+Unique MPE is C-D
+\end{frame}
+
+\begin{frame}{Exog-Dynamic-PD}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{black}{100} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{black}{30}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{black}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{black}{60}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{black}{200} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{black}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{black}{280} & \multicolumn{1}{P{0.1\textwidth}|}{\textbf{\textcolor{black}{190}}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+
+
+\textrm{
+\[
+\psi\left(\mbox{\ensuremath{\omega}},a\right)=\begin{cases}
+0.6\cdot\mbox{High}\oplus0.4\cdot\mbox{Low} & \mbox{if \ensuremath{\omega}=Low}\\
+0.8\cdot\mbox{High}\oplus0.2\cdot\mbox{Low} & \mbox{if }\mbox{\ensuremath{\omega}=High}
+\end{cases}
+\]
+}
+
+Unique MPE now $D-D$, but efficient SPE still possible!
+
+\end{frame}
+
+\begin{frame}{Results: Cooperation by State}
+\begin{card}
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{./i/col_bar_StateCoop_block_ExDPD.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Subject Cooperation:Ex-DPD }
+
+\begin{card}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_ExDPD.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Strategies (En-DPD$\rightarrow$Ex-DPD)}
+
+\begin{card}
+Popular pure strategy Markov:
+\begin{itemize}
+\item C-C: $7.9\%\rightarrow0.0\%$
+\item C-D: $23.5\%\rightarrow7.3\%$
+\item D-D (MPE): $4.7\%\rightarrow63.2\%$
+\end{itemize}
+\end{card}
+\begin{card} 
+Popular history-dependent strategies
+\begin{itemize}
+\item Grim trigger $13.8\%\rightarrow19.5\%$
+\end{itemize}
+\end{card}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{card}[Result 5]
+Without the dynamic externality subjects cooperation falls
+markedly
+\end{card}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{card}
+\begin{center}\includegraphics[height=0.7\textwidth]{./i/FlowChart6.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{En/Ex-DPD-2 $\rightarrow$ Ex-SPD-2}
+
+\begin{card}
+In our Dynamic-PD games, the state is changing over time
+
+What is the effect in the Exog-DPD from the changing state?
+\end{card}
+\begin{card}[Manipulation 5] Remove dynamics within cycles:
+
+    \begin{itemize}
+    \item At the start of the game, randomly select either High or Low
+    \item State tomorrow equals state today.
+    \item Each cycle is an indefinitely repeated PD game
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Results: Cooperation by State}
+    \begin{card}
+    \begin{center}
+    	\includegraphics[width=1.0\textwidth]{./i/col_bar_StateCoop_block_ExIRPD.pdf}
+    \end{center}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Subject Cooperation:Ex-DPD}
+\begin{card}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_ExDPD.pdf}
+\end{center}
+\end{card}
+\end{frame}
+\begin{frame}{Subject Cooperation:Ex-SPD}
+\begin{card}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_ExIRPD.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Strategies (Ex/En-DPD$\rightarrow$SPD)}
+
+\begin{card}
+ Cooperation rates at each state match behavior in each game:
+
+\begin{itemize}
+\item Low state, Grim is risk-dominant, observe more cooperation
+\item High state, All-D is risk dominant, observe mostly defections
+\end{itemize}
+Removing the dynamics increases cooperation in the low state
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Result 6]
+Dynamically evolving (but exogenous) environments reduce conditional
+cooperation
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}
+\begin{center}\includegraphics[height=0.7\textwidth]{./i/FlowChart7.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{En-DPD$\rightarrow$ En-CP}
+\begin{card}
+ In PD games, the action choice today has a static externality, my
+action choice affects your payoff today
+
+ We know that removing the dynamic externality reduces cooperation,
+but what are the effects from removing the static externality?
+\end{card}
+\begin{card}[Manipulation 6 \& 7] Remove the static externalities:
+\begin{itemize}
+\item Same transition rule as En-DPD
+\item Player 1's payoff today unaffected by Player 2's action today
+\end{itemize}
+\end{card}
+\end{frame}
+\begin{frame}{Common Pool-Low}
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textbf{\textcolor{blue}{100}} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{100}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{125}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{C} & \textcolor{blue}{130} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{blue}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{blue}{190} & \multicolumn{1}{P{0.1\textwidth}|}{\textbf{\textcolor{red}{190}}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+
+\end{center}
+\begin{card}
+\begin{itemize}
+    \item Same state transition rule as En-DPD, same symmetric Markov
+    \item Removes contemporaneous externality
+    \item Same MPE as En-DPD, $C$ in Low, $D$ in High
+\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Common Pool-High}
+\begin{center}
+\begin{table}
+\centering{}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{ccP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{red}{$\omega$=Low}}\\ 
+
+ &  & \multicolumn{2}{c}{2}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{\textbf{C}} & D\\ 
+\cline{3-4}
+\multirow{2}{*}{1} & \multicolumn{1}{c|}{\textbf{C}} & \textcolor{blue}{100} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{100}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{D} & \textcolor{red}{125} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{red}{125}}\\ 
+\cline{3-4}
+\end{tabular}}\subfloat{\centering{}{\small{}}%
+\begin{tabular}{rcP{0.1\textwidth}|P{0.1\textwidth}}
+\multicolumn{4}{c}{\textcolor{blue}{$\omega$=High}}\\ 
+
+ &  & \multicolumn{2}{c}{2:}\\ 
+ &  & \multicolumn{1}{P{0.1\textwidth}}{C} & \textbf{D}\\ 
+\cline{3-4}
+\multirow{2}{*}{1:} & \multicolumn{1}{c|}{C} & \textcolor{blue}{130} & \multicolumn{1}{P{0.1\textwidth}|}{\textcolor{blue}{130}}\\ 
+\cline{3-4}
+ & \multicolumn{1}{c|}{\textbf{D}} & \textcolor{blue}{280} & \multicolumn{1}{P{0.1\textwidth}|}{\textbf{\textcolor{red}{280}}}\\ 
+\cline{3-4}
+\end{tabular}}
+\end{table}
+\end{center}
+\begin{card}
+\begin{itemize}
+\item Payoffs are calibrated so that period tensions are the same for alternation
+between $(C,D)$ and $(D,C)$ in En-DPD
+\item Same Efficient frontier as the DPD-game
+\end{itemize}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Results: Cooperation by State}
+\begin{card}
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{./i/col_bar_StateCoop_block_CP_H.pdf}
+\end{center}
+\end{card}
+\end{frame}
+\begin{frame}{Subject Cooperation: En-DPD}
+\begin{card}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_EnDPD_2.pdf}
+\end{center}
+\end{card}
+\end{frame}
+\begin{frame}{Subject Cooperation: En-CP-L }
+\begin{card}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_CP_L.pdf}
+\end{center}
+\end{card}
+\end{frame}
+\begin{frame}{Subject Cooperation: En-CP-H }
+\begin{card}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{./i/col_subject_stateCooperation_L5_CP_H.pdf}
+\end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Strategies (En-DPD$\rightarrow$En-CP-L$\rightarrow$En-CP-H)}
+\begin{card}
+ Markov strategies
+\begin{itemize}
+\item C-C: $7.9\%\rightarrow6.8\%\rightarrow7.8\%$
+\item \textbf{C-D:} $23.5\%\rightarrow23.9\%\rightarrow35.4\%$
+\item \textbf{D-D:} $4.7\%\rightarrow12.3\%\rightarrow4.8\%$
+\end{itemize}
+\end{card}
+\begin{card} Popular history-dependent strategies
+
+\begin{itemize}
+\item Grim trigger $11.4\%\rightarrow7.3\%\rightarrow0.0\%$
+\item D-Alternate, D-trigger $4.3\%\rightarrow16.1\%\rightarrow4.6\%$
+\item C-Alternate, MPE-trigger $23.4\%\rightarrow9.1\%\rightarrow16.1\%$
+\item D-Alternate, MPE-trigger $2.5\%\rightarrow17.2\%\rightarrow31.4\%$
+\end{itemize}
+\end{card}
+\end{frame}
+\begin{frame}
+\begin{card}[Result 7]
+Removing the static externalities, outcomes looks like it does generate greater coordination on the
+MPE\end{card}
+\end{frame}
+
+
+\begin{frame}{Selection Index}
+\begin{card}
+ In repeated games, a large body of experimental work has shown that
+the basin attraction helps predict equilibrium selection
+\end{card}
+\begin{card}
+\centering 
+{\small{}}%
+\begin{tabular}{cc|P{0.18\textwidth}|P{0.18\textwidth}|}
+ & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Col:}\\ 
+ & \multicolumn{1}{c}{} & \multicolumn{1}{P{0.18\textwidth}}{\textbf{Grim}} & \multicolumn{1}{P{0.18\textwidth}}{\textbf{All-D}}\\ 
+\cline{3-4}
+\multirow{2}{*}{Row:} & \textbf{Grim} & \textcolor{black}{$1$} & -$S(\delta)$\\ 
+\cline{3-4}
+ & \textbf{All-D} & $T(\delta)$ & \textcolor{black}{$0$}\\ 
+\cline{3-4}
+\end{tabular}
+\end{card}
+\end{frame}
+
+\begin{frame}{Selection Index}
+\begin{card}
+\centering
+{\small{}}%
+\begin{tabular}{cc|P{0.18\textwidth}|P{0.18\textwidth}|}
+ & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Col:}\\ 
+ & \multicolumn{1}{c}{} & \multicolumn{1}{P{0.18\textwidth}}{\textbf{Grim}} & \multicolumn{1}{P{0.18\textwidth}}{\textbf{All-D}}\\ 
+\cline{3-4}
+\multirow{2}{*}{Row:} & \textbf{Grim} & \textcolor{black}{$1$} & -$S(\delta)$\\ 
+\cline{3-4}
+ & \textbf{All-D} & $T(\delta)$ & \textcolor{black}{$0$}\\ 
+\cline{3-4}
+\end{tabular}
+\end{card}
+\begin{card}
+Try to generalize this for the dynamic game
+\begin{itemize}
+    \item Replace All-D with the MPE
+    \item Replace Grim with Efficient cooperation on a MPE trigger
+\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Selection Index}
+\begin{card}
+
+\centering \includegraphics[width=0.7\textwidth]{./i/AlistairNew_Unilateral_2.pdf}
+\end{card}
+\end{frame}
+\end{document}
+

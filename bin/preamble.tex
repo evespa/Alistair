@@ -1,0 +1,30 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{colortbl,color}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+
+\defbeamertemplate{itemize subitem}{dash}{--}
+\defbeamertemplate{itemize subsubitem}{dash}{--}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[dash]
+\setbeamertemplate{itemize subsubitem}[dash]
+\setbeamertemplate{enumerate item}{\arabic{enumi}.}
+\setbeamertemplate{enumerate subitem}{(\alph{enumii})}
+\usefoottemplate{}
+
+\newcommand{\showOn}[3]{\only<#2>{\color<#2>{black} #1}\only<#3>{\color<#3>{white} #1}}
+
+\setbeamertemplate{headline}{}
+\usenavigationsymbolstemplate{}
+\setbeamercolor{titlelike}{fg=black}
+\setbeamercolor{item}{fg=black}
+
+\setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.2]at ([xshift=-0.075\textwidth,yshift=-0.075\textwidth]current page.north east){\includegraphics[width=0.1\textwidth]{bin/pittLogo}};}
+
+

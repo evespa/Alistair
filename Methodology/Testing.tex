@@ -1,0 +1,722 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphics}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{subfig}
+\usepackage{eurosym,units}
+\usepackage{colortbl,color}
+\usetheme{material}
+\useLightTheme
+\usePrimaryRed
+\useAccentGreen
+
+\renewcommand{\theenumii}{\alph{\enumii}}
+\defbeamertemplate{itemize subitem}{dash}{--}
+\defbeamertemplate{itemize subsubitem}{dash}{--}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[dash]
+\setbeamertemplate{itemize subsubitem}[dash]
+\setbeamertemplate{enumerate item}{\arabic{enumi}.}
+\setbeamertemplate{enumerate subitem}{(\alph{enumii})}
+\usefoottemplate{}
+
+\setbeamertemplate{headline}{}
+\usenavigationsymbolstemplate{}
+
+\begin{document}
+
+\title{\LARGE Econ 3610: Experimental Economics \\ Testing}
+\author{Alistair J. Wilson }
+\date{Fall 2020}
+ \maketitle
+
+\begin{frame}{Testing}
+\begin{card}
+We've designed our experiment:
+	\begin{enumerate}
+		\item Designed treatments
+		\item Specified our hypotheses
+		\item Carried out our sessions
+	\end{enumerate}
+Now we need to juice the data, where a good knowledge of applied statistics will help you do this
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Plan}
+\begin{card}
+\begin{enumerate}
+	\item Review of some terms
+	\item Parametric tests
+	\item Some non-parametric tests
+	\item Regression
+	\item Session Effects
+\end{enumerate}
+\end{card}
+\end{frame}
+\section{Review of Terminology}
+\begin{frame}{Review some terms}
+\begin{card}
+	\begin{itemize}
+		\item Null Hypothesis, $H_0$
+		\item Alternative or Research Hypothesis $H_1$
+		\item Test
+		\item Power
+	\end{itemize}
+	\end{card}
+\end{frame}
+
+\begin{frame}{Null and Alternative}
+\begin{card}
+	\begin{itemize}
+		\item Null Hypothesis, $H_0$ (fair coin $p=0.5$ say)
+		\item Alternative or Research Hypothesis $H_1$ ($p>0.5$ say)\pause
+		\item We test $H_0$ against $H_1$, where we will either reject $H_0$ in favor of $H_1$, or we will fail to reject
+	\end{itemize}
+\end{card}
+\begin{card}
+$\alpha$ is the probability of mistakenly rejecting $H_0$. This is called a \textbf{Type I error}.
+\end{card}
+\end{frame}
+
+
+
+\begin{frame}{Statistical Test}
+\begin{card}
+ Given the entire sample space $\Omega$ of a test's outcome, a test at a particular significance-level divides up $\Omega$ into a
+region of \textbf{Rejection}, $\Omega_R$, and a region where we \textbf{fail to reject}, $\Omega\setminus\Omega_R$
+\end{card}
+\begin{card} The region of \emph{Rejection} has the property that:
+				$$\alpha=\Pr\left\{\omega\in\Omega_R\left|H_0\right.\right\}$$
+			for some level of significance $\alpha\in(0,1)$.
+\end{card}
+\end{frame}
+
+\begin{frame}{Statistical Test}
+\begin{card}
+The significance $\alpha$ is the probability of mistakenly rejecting $H_0$. This is called a \textbf{Type I error}.\end{card}
+\begin{card}
+However, we could also mistakenly fail to reject $H_0$ when it should be rejected. 
+
+This is a \textbf{Type II error} and has probability given by
+			$$\beta=\Pr\left(\omega\not\in \Omega_R \left|H_1\right.\right)$$
+	\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}
+Suppose we flip a coin 10 times, where the number of heads $x$ is the outcome. Under the null the coin is fair: $x\sim$Binomial(10,$\tfrac{1}{2}$):
+\end{card}
+
+\begin{center}\cardImg{./i/BinomialNull.eps}{0.66\textwidth}\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{card}
+ Suppose the alternative hypothesis is true, that $p>\tfrac{1}{2}$, then
+the probability that the statistic is not in $\Omega_R$ is:
+		$$\beta= 1-10 p^{9}(1-p)-p^{10}$$
+	\end{card}
+
+\begin{center}\cardImg{./i/BinomialBeta.eps}{0.66\textwidth}\end{center}
+\end{frame}	
+
+
+\begin{frame}{Power}
+	\begin{card}
+ The \textbf{power} of a test is given by $1-\beta$, and is the probability that the test rejects the null when it is false. The larger the power the better.
+ \end{card}
+\begin{card} After selecting $\alpha$, we want tests that have the most power possible, where with most tests the power is increasing in the sample size, $N$.
+\end{card}
+\end{frame}
+
+\begin{frame}
+	\begin{card}
+The power for the binomial test with $N=10$ is:
+		$$1-\beta=10 p^{9}(1-p)+p^{10}$$
+	\end{card}
+	
+\begin{center}\cardImg{./i/BinomialPower.eps}{0.6\textwidth}\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{card}Our significance and power move together. 
+	
+	With 20 samples we have a rejection region of 16--20
+	\end{card}
+
+\begin{center}\cardImg{./i/BinomialPower2.eps}{0.6\textwidth}\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{card}Our rejection regiond and power move together. 
+	
+	With 100 samples we have a rejection region of 62--100
+	\end{card}
+
+\begin{center}\cardImg{./i/BinomialPower3.eps}{0.6\textwidth}\end{center}
+\end{frame}
+\begin{frame}
+	\begin{card}Our significance and power move together. 
+	
+	With 1000 samples we have a rejection region of 536--1000
+	\end{card}
+
+\begin{center}\cardImg{./i/BinomialPower4.eps}{0.6\textwidth}\end{center}
+\end{frame}
+
+
+\begin{frame}{Tests}
+	\begin{card} Many tests work by reducing the data to a statistic that has a (asymptotically) known distribution (eg $\mathcal{N}(0,1)$ or $\chi^2$), called pivotal statistics
+	\end{card}
+	\begin{card} Alternatively resampling tests work by creating an approximation of the sampling distribution and measuring against this (eg bootstraps, jack-knifes, sub-sampling)
+	\end{card}
+\end{frame}
+
+\begin{frame}{Parametric vs. Non-Parametric}
+	\begin{card}
+		 Holding constant the difference between the null and the alternative, we can enforce additional (untested) assumptions
+		 \begin{itemize}
+		\item This has the effect of increasing a test's power or simplicity if those assumptions are correct
+		\item Though our test might be misspecified if they're not valid
+		\end{itemize}
+	\end{card}
+	
+\end{frame}
+
+\begin{frame}{Parametric vs. Non-Parametric}
+	\begin{card}
+        Parametric tests use some assumed functional form for the distribution under consideration, so any test can focus on the parameters of this functional form
+    \end{card}
+    \begin{card} Non-parametric tests do not assume a family of distributions from which the data-generating process comes from, but instead tend to focus on independence
+	\end{card}
+\end{frame}
+
+\section{Parametric Tests}
+\begin{frame}{Parametric Tests: $t$ and $F$ tests.}
+	\begin{card}
+For many statistics a $t$ or $F$ test is used
+        \begin{itemize}
+    		\item In classical regression a central-limit theorem will tell us that if the null $H_0:\beta=\beta_0$ holds:
+    		$$\sqrt(n)(\hat{\beta}-\beta_0)\longrightarrow^{d} \mathcal{N}(0,\Sigma)$$
+    		and we can find an estimator of the variance-covariance matrix
+    		$$\hat{\Sigma}\longrightarrow^{p} \Sigma $$
+    	\end{itemize}
+    \end{card}
+
+\end{frame}
+
+\begin{frame}{Parametric Tests: $t$ and $F$ tests.}
+	\begin{card}
+From this we can generate a pivotal distribution:
+			$$\sqrt(n)\hat{\Sigma}^{-\frac{1}{2}}(\hat{\beta}-\beta_0)\longrightarrow^{d} \mathcal{N}(0,I)$$
+			or equivalently
+			$$n(\hat{\beta}-\beta_0)'\hat{\Sigma}^{-1}(\hat{\beta}-\beta_0)\longrightarrow^{d}\chi^2_k$$
+	\end{card}
+\end{frame}
+
+\begin{frame}{Parametric Tests: $t$ and $F$ tests.}
+    \begin{card}
+	\begin{itemize}
+		\item These tests are supported by asymptotics to get to the pivot statistic
+		\item In experiments though we frequently have smaller sample sizes
+	\end{itemize}
+	\end{card}
+\end{frame}
+\begin{frame}{Parametric Tests: $t$ and $F$ tests.}
+    \begin{card}
+	We could just \textbf{assume} that the errors in the regression were Gaussian and conduct a Likelihood Ratio test:
+		$$\lambda=\frac{\text{Likelihood of data Under $\beta_0$}}{\text{Maximum Likelihood of data}}$$
+		which would similarly be tested by the fact that:
+		$$F=\frac{n-K}{K}(\lambda^{\frac{2}{n}}-1)$$
+	\end{card}
+	\begin{card} But in true experiments we can usually make stronger assumptions on independence allowing us to shift to non-parametric tests
+	\end{card}
+\end{frame}
+\section{Non-parametric Tests}
+
+\begin{frame}{Non-parametric Tests: Sign Test}
+	\begin{card}
+ Frequently non-parametric tests will use a quantile of the distribution and exploit independence of observations
+ \begin{itemize}
+		\item A test of the central tendency would  examine whether the median is equal to $\mu_0$
+		\item So the null is $H_0:$ Median$(y_i)=\mu_0$
+\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Non-parametric Tests: Sign Test}
+\begin{card} For the variable $y_1$ we can define the indicator $z_i=\mathrm{1}\left\{y_{i}\leq \mu_0 \right\}$ 
+\begin{itemize}
+		\item  $z_i$ is a Bernoulli RV with parameter $p=0.5$ under $H_0$
+		\item So the random variable $\sum_{i=1}^N z_i$ under the null and independence is a Binomial with parameters $p=\frac{1}{2}$ $n=N$
+	\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+    \texttt{use TestDataset, clear}
+    
+    \texttt{signtest y1=3.8}
+    
+    \texttt{gen I1=y1<=3.8}
+
+    \texttt{bitest I1=0.5}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Non-parametric Tests: Sign Test with matched data}
+\begin{card}
+ We can also run this test for when we have a matched observation for each treatment variable (normally from a Within-Subject Design).
+ 
+ Use a similar set-up to test that the two distributions have the same median\end{card}
+\end{frame}
+
+\begin{frame}{Non-parametric Tests: Sign Test with matched data}
+ \begin{card}
+ $H_0:$ Median$(y^1_i)$=Median$(y^2_i)$
+ 
+ Under the null $\Pr\left\{y^1_{i}>y^2_{i}\right\}=\Pr\left\{y^1_{i}<y^2_{i}\right\}=\frac{1}{2}$
+ \end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{signtest y1=y2}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Non-parametric Tests: Wilcoxon Sign-rank Test}
+\begin{card} Given the same median and symmetric distributions we can use a stronger test than the sign test with matched data.
+
+Basic idea is to use sign information and ordinal magnitudes of difference to get a more powerful test
+\end{card}
+\end{frame}
+\begin{frame}{Non-parametric Tests: Wilcoxon Sign-rank Test}
+\begin{card}
+Define $d_i=\left|y^1_i-y^2_i \right|$, order the $d_i$ observations, and let $R_i$ be its rank.
+\end{card}
+
+\begin{card}
+Older version of test looks at the Siegel statistic
+  $$T=\min\left\{\sum_{y^1_i>y^2_i} R_i ,\sum_{y^1_i<y^2_i}R_i\right\}$$
+\begin{itemize}
+		\item For large $N$, $T$ has a Gaussian approximation
+		\item More modern version uses $W$-test statistic
+	\end{itemize}
+\end{card}
+\end{frame}
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{signrank y1=y2}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Random Aside from the Stata Manual}
+	\begin{card}
+		Frank Wilcoxon (1892--1965) was born in Ireland to American parents. After working in various occupations (including merchant seaman, oil-well pump attendant, and tree surgeon), he settled in chemistry, gaining degrees from Rutgers and Cornell and employment from various companies. Working mainly on the development of fungicides and insecticides, Wilcoxon became interested in statistics in 1925 and made several key contributions to nonparametric methods. After retiring from industry, he taught statistics at Florida State until his death.
+	\end{card}
+\end{frame}
+
+\begin{frame}{Stochastic Dominance}
+	\begin{card}There are also several  tests designed to examine stochastic relationships between distributions
+\begin{itemize}
+		\item More modern tests look at testing stochastic ordering (see Barrett and Donald 2003 and Linton et al 2010)
+		\item But given enough data, merely graphing the cumulative distributions can be fairly convincing
+	\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{cumul y1, gen(cumuly1)}
+        
+        \texttt{cumul y2, gen(cumuly2)}
+        
+        \texttt{twoway (line cumuly1 y1) (line cumuly2 y2)}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Mann-Whitney U/Wilcoxon/Ranksum Test}
+\begin{card}
+Another common option: 
+	\begin{itemize}
+		\item Mann, H. B., and D. R. Whitney. 1947. ``On a test whether one of two random variables is stochastically larger than the other.''  \textbf{Annals of Mathematical Statistics} 18: 50-60.
+		\item Wilcoxon, F. 1945. ``Individual comparisons by ranking methods.''  \textbf{Biometrics} 1: 80-83.
+	\end{itemize}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Mann-Whitney U/Wilcoxon/Ranksum Test}
+\begin{card}
+ $H_0$ is that samples $A$ and $B$ have the same distribution
+ 
+ 
+ $H_1$ is that sample $A$ is stochastically greater than sample $B$ ($\Pr\left\{a>b \right\}>\tfrac{1}{2}$, where two-tailed tests are less common)
+
+\end{card}
+\end{frame}
+
+\begin{frame}{Mann-Whitney U/Wilcoxon/Ranksum Test}
+\begin{card}
+	\begin{enumerate}
+		\item Rank all observations from both samples from lowest to highest
+		\item For sample $1$, for each observation $y^1_i$, count the number of observations from sample 2 below it, to get $S_i$
+		\item $U_n=n^1\cdot n^2+\dfrac{n^1(n^1+1)}{2}-\sum_{i=1}^{n^1} S_i$
+		\item Test $U_n$ against known distribution for $U$-statistic under $H_0$
+	\end{enumerate}
+\end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{reshape long y Ty Py, i(Subject Period) j(Session)}
+    
+        \texttt{ranksum y, by(Session) porder}
+    \end{card}
+\end{frame}
+
+
+\begin{frame}{More Stata Manual Asides...}
+\begin{card}
+Henry Berthold Mann (1905--2000) was born in Vienna, Austria, where he completed a doctorate
+in algebraic number theory. He moved to the United States in 1938 and for several years made
+his livelihood by tutoring in New York. During this time, he proved a celebrated conjecture in number theory and studied statistics at Columbia with Abraham Wald, with whom he wrote three papers.
+\end{card}
+\end{frame}
+
+\begin{frame}{More Stata Manual Asides...}
+    \begin{card}
+    Donald Ransom Whitney (1915--2007) studied at Oberlin, Princeton, and Ohio State Universities and worked at the latter throughout his career. His PhD thesis under Henry Mann was on nonparametric statistics. It was this work that produced the test that bears their names.
+    \end{card}
+\end{frame}
+
+\begin{frame}
+\begin{center}\cardImg{./i/NonParamPower_10.eps}{0.7\textwidth}\end{center}
+
+\begin{card}Test Power for $N=10$\end{card}
+\end{frame}
+\begin{frame}
+\begin{center}\cardImg{./i/NonParamPower_20.eps}{0.7\textwidth}\end{center}
+
+\begin{card}Test Power for $N=20$\end{card}
+\end{frame}
+\begin{frame}
+\begin{center}\cardImg{./i/NonParamPower_50.eps}{0.7\textwidth}\end{center}
+
+\begin{card}Test Power for $N=50$\end{card}
+\end{frame}
+\begin{frame}
+\begin{center}\cardImg{./i/NonParamPower_100.eps}{0.7\textwidth}\end{center}
+
+\begin{card}Test Power for $N=100$\end{card}
+\end{frame}
+
+
+\begin{frame}{Fisher-Exact Test}
+\begin{card}
+\begin{center}
+\begin{tabular}{cccc}
+&  -  & + & Total\\ 	\hline
+	Group I & $A$  & $B$ & $A+B$ \\
+	Group II & $C$ & $D$ & $C+D$ \\\cline{2-4}
+	Total & $A+C$ & $B+D$ & $N$
+\end{tabular}
+\end{center}
+\end{card}
+
+\begin{card}
+Two groups, experiment and control say, divided on a binary characteristic (above or below the median)
+\end{card}
+\end{frame}
+
+\begin{frame}{Fisher-Exact Test}
+\begin{card}
+\begin{center}
+\begin{tabular}{cccc}
+&  -  & + & Total\\ 	\hline
+	Group I & $A$  & $B$ & $A+B$ \\
+	Group II & $C$ & $D$ & $C+D$ \\\cline{2-4}
+	Total & $A+C$ & $B+D$ & $N$
+\end{tabular}
+\end{center}
+\end{card}
+\begin{card}
+ Under no difference, probability of this arrangement is $$p\frac{(A+B)!(C+D)!(A+C)!(B+D)!}{N!A!B!C!D!}$$
+Can sum over more extreme distributions to work out tail size
+\end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{median y, by(Session) exact}
+    \end{card}
+\end{frame}
+
+
+\begin{frame}{Stata on Fisher:}
+\begin{card}
+Ronald Aylmer Fisher (1890--1962) (Sir Ronald from 1952) studied mathematics at Cambridge. Even before he finished his studies, he had published on statistics. He worked as a statistician at Rothamsted Experimental Station (1919--1933), as professor of eugenics at University College London (1933--1943), as professor of genetics at Cambridge (1943--1957), and in retirement at the CSIRO Division of Mathematical Statistics in Adelaide. His many fundamental and applied contributions to statistics and genetics mark him as one of the greatest statisticians of all time, including original work on tests of significance, distribution theory, theory of estimation, fiducial inference, and design of experiments.
+\end{card}
+\end{frame}
+
+\begin{frame}{Kolmogorov-Smirnov Test}
+	\begin{card}
+This test compares two CDFs, $F(x)$ and $G(x)$ using the statistic:
+			$$D_{n_1,n_2}= \max_{x\in X} \left| F_{n_1}(x)-G_{n_2}(x)  \right|$$
+			\end{card}
+\begin{card} The sampling distribution for $D_n$ is known and this can form an exact test, while for larger samples we use that:
+		$$4 D^2 \frac{n_1 n_2}{n_1+n_2}$$
+	is asymptotically a $\chi^2_2$ distribution
+	\end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{ksmirnov y, by(Session)}
+        
+        \texttt{ksmirnov y, by(Session) exact }
+    \end{card}
+\end{frame}
+
+\begin{frame}{Kolmogorov-Smirnov Power}
+\begin{center}\cardImg{./i/NonParamPower2_10.eps}{0.7\textwidth}\end{center}
+
+ \begin{card}Test Power for$N=10$\end{card}
+\end{frame}
+
+\begin{frame}{Kolmogorov-Smirnov Power}
+\begin{center}\cardImg{./i/NonParamPower2_20.eps}{0.7\textwidth}\end{center}
+
+\begin{card}Test Power for$N=20$\end{card}
+\end{frame}
+
+\section{Regression}
+\begin{frame}{Panel Tests}
+	\begin{card}
+	 Data frequently takes the form of a panel where we have multiple observations from multiple subjects.
+	 
+	We can therefore specify tests that have idiosyncratic agent components
+	\end{card}
+		\pause
+	\begin{card} Suppose that the linear relationship is:
+			$$ y_{it}=\beta x_{it} +\gamma z_i+\mu_i+\epsilon_{it} $$
+		where $\epsilon_{it}$ is mean independent of $x_{it}$ and $z_i$ \end{card}
+\end{frame}
+
+\begin{frame}{Panel Tests}
+\begin{card}
+ Depending on whether or not we think $\mu_i$ is independent of $(x_{it},z_i)$ we will run a:
+		\begin{itemize}
+			\item Random-Effects Estimation (mean independent) 
+			
+			\item ML Random-Effect Estimation (errors are Normal$\Rightarrow$mean indep.)
+			
+			\item Fixed-Effects Estimation (not mean independent)
+		\end{itemize}
+	\end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{use TestingData, clear}
+        
+        \texttt{xtreg y1 x z, re}
+        
+        \texttt{xtreg y1 x z, fe}
+        
+        \texttt{xtreg y1 x z, mle}
+    \end{card}
+\end{frame}
+
+
+\begin{frame}{Limited-Dependent Variable Tests}
+	\begin{card}
+Many variables in experiments (and more generally) can be discrete/have appreciable mass points
+		\begin{itemize}
+			\item Binary decisions
+			\item Discrete choices
+			\item Bounds on behavior
+		\end{itemize}
+	\end{card}\pause
+	\begin{card} 
+	To address this we make much use of standard limited-dependent variable techniques
+	\end{card}
+\end{frame}
+
+\begin{frame}{Limited-Dependent Variable Tests}
+    \begin{card}
+	\begin{itemize}
+		\item Techniques rely on maximum-likelihood estimation via parametric assumptions on the distribution
+		\item Most common assumptions are Gaussian or Extreme-value assumptions (tractable)
+		\item There are non-parametric techniques, but these are less commonly used in the experimental literature at the moment
+	\end{itemize}
+	\end{card}
+\end{frame}
+
+\begin{frame}{Probit}
+	\begin{card}
+Suppose subjects are choosing either to accept or reject a particular offer
+
+The subjects are assumed to accept if $y=x\beta +\epsilon>0$
+		\begin{itemize}
+			\item $x$ is some observable component
+			\item $y$ is the unobservable value of the object to the subject
+			\item $\epsilon$ is assumed to be iid $\mathcal{N}(0,1)$ (scale assumption)
+		\end{itemize}
+\end{card}	
+		
+\end{frame}
+
+\begin{frame}{Probit}
+	\begin{card}
+So for any $\beta$, the probability they accepte the offer is:
+		$$1-\Phi(-x\beta)=\Phi(x\beta)$$
+		and the log-likelihood of the entire sample is therefore
+		$$l(\beta)=\sum_{\text{Accept}_i} \log\left(\Phi(x_i\beta)\right)+ \sum_{\text{Reject}_i} \log\left(1-\Phi(x_i\beta)\right)$$
+		
+Maximize this to recover an estimate.
+	\end{card}
+\end{frame}
+
+\begin{frame}{Probit}
+\begin{card}
+\begin{itemize}
+\item Most tests here are formulated using estimates of the slope of the likelihood function around the maximizing parameters
+		\item If we had assumed the noise terms were $\mathcal{N}(0,\sigma^2)$ then we would not have been able to identify the scale of $\beta$
+\end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Probit}
+\begin{card}
+    When reporting coefficients it's usually more meaningful to provide marginal effects
+    		\begin{itemize}
+    			\item Given the estimate of $\beta$, what is the change in the probability of acceptance given a change in $x_i$
+    		\end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{probit Py1 x z}
+        
+        \texttt{xtprobit Py1 x z}
+        
+        \texttt{help xtprobit postestimation}
+        
+        \texttt{margin}
+        
+        \texttt{margin, dydx(*)}
+    \end{card}
+\end{frame}
+
+
+\begin{frame}{Tobit}
+	\begin{card}
+	When there are bounds on the space (say that subjects final choices are constrained to be in $[0,1]$, regression is again typically misspecified\end{card}
+	
+	\begin{card} Limited-dependent variable is now:
+				$$\tilde{y}_i=\begin{cases} 1 & \text{if $y_i>1$} \\ y_i & \text{if $y_i\in[0,1]$} \\ 0 & \text{if $y_i<0$}  \end{cases} $$\end{card}
+				
+\end{frame}
+
+\begin{frame}{Tobit}
+
+	\begin{card} Limited-dependent variable is now:
+				$$\tilde{y}_i=\begin{cases} 1 & \text{if $y_i>1$} \\ y_i & \text{if $y_i\in[0,1]$} \\ 0 & \text{if $y_i<0$}  \end{cases} $$\end{card}
+				
+\end{frame}
+
+\begin{frame}{Tobit}
+
+				
+		\begin{card}If $y_i=x_i\beta +\epsilon_i$ the likelihood is given by:
+		$$ l(\beta)=\sum_{y_i=0} \log\left(\Phi(\frac{-x_i\beta}{\sigma})\right)+ \sum_{y_i\in(0,1)} \log\left(\phi(\frac{y_i-x_i\beta}{\sigma})\right)+$$ $$\sum_{y_i=1} \log\left(1-\Phi(\frac{1-x_i\beta}{\sigma})\right)$$
+	\end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[STATA]
+        \texttt{tobit Ty1 x , ll(0) ul(3)}
+        
+        \texttt{xttobit Ty1 x , ll(0) ul(3)}
+        
+        \texttt{margins, predict( pr( ., 0) )}
+        
+        \texttt{margins, predict( pr( 3, .) )}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Session Effects (see Fr\'echette EE 2012)}
+	\begin{card}
+		 In many experiments there is a correlation between subjects' play within a session.
+		 
+		 Potential Reasons:
+		\begin{itemize}
+			\item Experimenter fixed-effects
+			\item Session path-dependency
+		\end{itemize}
+		\end{card}
+\end{frame}
+
+\begin{frame}{Session Effects (see Fr\'echette EE 2012)}
+	\begin{card}
+These session-level effects lead to a lack of independence that makes testing tricky
+
+
+ There are two main solutions experimenters have used to tackle this:
+		\begin{itemize}
+			\item Session-averages
+			\item Using only the first period
+		\end{itemize}
+		
+However, for fixed sample sizes, both will reduce power of tests substantially
+	\end{card}
+\end{frame}
+
+\begin{frame}{Session Effects }
+	\begin{card}
+	 Fr\'echette outlines two types of session effect
+		\begin{itemize}
+			\item \textbf{Static} : example used is comparative behavior in Roth et al (AER 1991)
+			\item \textbf{Dynamic}: example used is Median Game in Van Huyck et al (QJE 1991)
+		\end{itemize}
+	\end{card}
+\end{frame}
+
+\begin{frame}{Session Effects }
+	\begin{card}
+	Ssome myths fpr controlling session effects
+		\begin{enumerate}
+			\item Using session averages as the unit of observation eliminates the problem
+			\item Using (non parametric tests on) session averages is a more conservative approach
+			\item Experiments where the task is performed only once eliminate problems
+			\item Turnpike design eliminates problem
+			\item Separating sessions into smaller subgroups alleviates the problem by increasing the number of independent observations
+		\end{enumerate}
+	\end{card}
+\end{frame}
+
+\begin{frame}{Session Effects }
+	\begin{card}
+	 Fr\'echette mostly suggests using more direct econometric methods
+		\begin{enumerate}
+			\item Clustering at the subject level for VCM estimates
+			\item Fixed or random-effect estimation for static effects
+			\item Reducing feedback at the cost of learning
+		\end{enumerate}
+		 Note that clustering requires a LLN over the number of clusters. Clustering at the session-level will generally not suffice! (see Cameron and Miller JHR 2017)
+
+\end{card}
+\end{frame}
+
+\end{document}
+

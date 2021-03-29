@@ -1,0 +1,939 @@
+\documentclass[english]{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphics}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{subfig}
+\usepackage{eurosym,units}
+\usepackage{colortbl,color}
+\usetheme{material}
+\useLightTheme
+\usePrimaryRed
+\useAccentGreen
+
+\renewcommand{\theenumii}{\alph{\enumii}}
+\defbeamertemplate{itemize subitem}{dash}{--}
+\defbeamertemplate{itemize subsubitem}{dash}{--}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[dash]
+\setbeamertemplate{itemize subsubitem}[dash]
+\setbeamertemplate{enumerate item}{\arabic{enumi}.}
+\setbeamertemplate{enumerate subitem}{(\alph{enumii})}
+\usefoottemplate{}
+
+\setbeamertemplate{headline}{}
+\usenavigationsymbolstemplate{}
+
+
+\newcommand{\SD}[1]{{\tiny $\left(#1\right)$}}
+\newcommand{\SDm}[1]{{\tiny \left(#1\right)}}
+\newcommand{\Prob}[1]{\mbox{Pr}\left\{#1\right\}}
+\newcommand{\CProb}[2]{\mbox{Pr}\left\{#1\left|#2\right.\right\}}
+
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\begin{document}
+\title{Selecting Equilibria: Experiments on Collusion, Competition \& Dynamics}
+\date{Fall, 2020}
+\author{Alistair Wilson}
+
+\maketitle
+
+\begin{frame}{Introduction}
+\begin{card}
+	\begin{itemize}
+		\item Many interesting one-shot interactions have inefficient Nash outcomes
+		\item But observed lab behavior frequently exhibits deviations to efficiency
+		\item In longer-run relationships, players who value the future enough can
+		obtain efficient outcomes in equilibrium
+			\begin{itemize}
+				\item Observed behavior indicates an affinity for conditionally cooperative responses to achieve efficiency
+			\end{itemize}
+	\end{itemize}
+	\end{card}
+\end{frame}
+
+\begin{frame}{One-Shot Prisoner's Dilemma}
+	\begin{card}
+	\begin{center}
+		\begin{tabular}{cc|p{0.14\textwidth}|p{0.14\textwidth}|}
+		 & \multicolumn{1}{c}{} & \multicolumn{2}{c}{2:}\\
+		 & \multicolumn{1}{c}{} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{C}} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{D}}\\
+		\cline{3-4}
+		\multirow{2}{*}{1:} & \textbf{C} & 100,100 & 30, 125\\
+		\cline{3-4}
+		 & \textbf{D} & 125, 30 & \textbf{60,60}\\
+		\cline{3-4}
+		\end{tabular}
+	\end{center}
+    \end{card}
+    \begin{card}
+    \begin{itemize}
+		\item Unique Nash prediction is joint defection
+		\item But the outcome is inefficient
+	\end{itemize}
+	\end{card}
+\end{frame}
+
+\begin{frame}{One-Shot Prisoner's Dilemma}
+\begin{card}
+    \begin{center}
+    \begin{tabular}{cc|p{0.14\textwidth}|p{0.14\textwidth}|}
+     & \multicolumn{1}{c}{} & \multicolumn{2}{c}{2:}\\
+     & \multicolumn{1}{c}{} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{C}} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{D}}\\
+    \cline{3-4}
+    \multirow{2}{*}{1:} & \textbf{C} & 100,100 & 30, 125\\
+    \cline{3-4}
+     & \textbf{D} & 125, 30 & \textbf{60,60}\\
+    \cline{3-4}
+    \end{tabular}
+    \end{center}
+\end{card}
+
+\begin{card}
+    \begin{itemize}
+    \item Even when the game is repeated finitely, the unique equilibrium prediction is joint defection.
+    \item Early experiments in 1950s examined repeated PD games
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{John Nash Jr. Response:}
+\begin{card}
+``The flaw in the experiment as a test of equilibrium point play is
+that the experiment really amounts to having the players play one
+large multi-move game[...] In this view, it is still true that the only
+real absolute equilibrium point is for {[}1+2 to always play D{]}.
+However, the strategies:
+\begin{itemize}
+\item {[}1{]} plays {[}C{]} til {[}2{]} plays {[}D{]}, then {[}D{]} ever
+after,
+\item {[}2{]} plays {[}C{]} til {[}1{]} plays {[}D{]}, then {[}D{]} ever
+after,\end{itemize}
+are very nearly at equilibrium, and in a game with an indeterminate
+	stop point or an infinite game with interest on utility, it \textbf{is}	an equilibrium point.''
+	\end{card}
+\end{frame}
+
+\begin{frame}{Indefinitely Repeated Prisoner's Dilemma}
+	\begin{card}
+		\begin{center}
+    		\begin{tabular}{cP{0.14\textwidth}|P{0.14\textwidth}cP{0.4\textwidth}}
+    		  \multicolumn{3}{c}{\textbf{Game }$\Gamma:$} &  & \textbf{Then}\\
+    		 & \multicolumn{1}{P{0.14\textwidth}}{\textbf{C}} & \textbf{D} &  & \\
+    		\cline{2-3}
+    		\multicolumn{1}{c|}{\textbf{C}} & 100,100 & \multicolumn{1}{P{0.14\textwidth}|}{30, 125} &  & Prob. $\delta$, play $\Gamma$\\
+    		\cline{2-3}
+    		   \multicolumn{1}{c|}{\textbf{D}} & 125, 30 & \multicolumn{1}{p{0.14\textwidth}|}{60,60} &  & Prob. $(1-\delta)$, End\\
+    		\cline{2-3}
+    		\end{tabular}
+	    \end{center}
+	\end{card}
+	
+    \begin{card}
+ We can interpret $\delta$ as:
+        		\begin{itemize}
+        			\item the amount we value the future,
+        			\item the present value of future gains $\nicefrac{1}{(1+r)}$
+        			\item likelihood of relationship surviving
+        		\end{itemize}
+    \end{card}
+\end{frame}
+
+
+\begin{frame}{Conditional Cooperation}
+    \begin{card}
+    Take an infinitely repeated Prisoner's Dilemma with Nash's strategy:
+    \begin{itemize}
+        \item Partner cooperates so long as I have (historically), but, if they
+        observe a defection, they switch to a punishment
+        \item If the punishment's costs are larger than the benefits from deviating, efficient cooperation can be sustained
+    \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Conditional Cooperation}
+    \begin{card}
+        \begin{center}
+            \begin{tabular}{cc|p{0.14\textwidth}|p{0.14\textwidth}|}
+                 & \multicolumn{1}{c}{} & \multicolumn{2}{c}{2:}\\
+                 & \multicolumn{1}{c}{} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{C}} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{D}}\\
+                \cline{3-4}
+                \multirow{2}{*}{1:} & \textbf{C} & 100,100 & 30, 125\\
+                \cline{3-4}
+                 & \textbf{D} & 125, 30 & 60,60\\
+                \cline{3-4}
+            \end{tabular}
+        \end{center}
+    \end{card}
+    \begin{card}
+    If both players follow the strategy the expected outcome is: $$100+\delta\cdot100+\delta^{2}\cdot100+\ldots\sim(1-\delta)100+\delta\cdot100$$
+    \end{card}
+\end{frame}
+
+\begin{frame}{Conditional Cooperation}
+\begin{card}
+\begin{center}
+    \begin{tabular}{cc|p{0.14\textwidth}|p{0.14\textwidth}|}
+         & \multicolumn{1}{c}{} & \multicolumn{2}{c}{2:}\\
+         & \multicolumn{1}{c}{} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{C}} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{D}}\\
+        \cline{3-4}
+        \multirow{2}{*}{1:} & \textbf{C} & 100,100 & 30, 125\\
+        \cline{3-4}
+         & \textbf{D} & 125, 30 & 60,60\\
+        \cline{3-4}
+    \end{tabular}
+\end{center}
+\end{card}
+\begin{card}
+Consider a deviation to playing $D$, this yields
+    $$ 125+\delta\cdot60+\delta^{2}\cdot60+\ldots\sim(1-\delta)125+\delta\cdot60$$
+   \begin{itemize}
+    \item Current-period gain of $(1-\delta)\cdot25$
+    \item Continuation cost of $\delta\cdot40$
+    \end{itemize}
+\end{card}
+\end{frame}
+\begin{frame}{Conditional Cooperation}
+\begin{card}
+\begin{center}
+    \begin{tabular}{cc|p{0.14\textwidth}|p{0.14\textwidth}|}
+         & \multicolumn{1}{c}{} & \multicolumn{2}{c}{2:}\\
+         & \multicolumn{1}{c}{} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{C}} & \multicolumn{1}{p{0.14\textwidth}}{\textbf{D}}\\
+        \cline{3-4}
+        \multirow{2}{*}{1:} & \textbf{C} & 100,100 & 30, 125\\
+        \cline{3-4}
+         & \textbf{D} & 125, 30 & 60,60\\
+        \cline{3-4}
+    \end{tabular}
+\end{center}
+\end{card}
+\begin{card}
+Net gain better if $(1-\delta)\cdot 25 \geq \delta\cdot40$
+    $$ \Rightarrow \delta \geq \tfrac{5}{13}$$
+\end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Fudenberg and Maskin (EMA 1986)]
+    Any payoff profile for the agents in the game that is above the individually rational payoff is supportable as a sub-game perfect equilibrium outcome for $\delta$ sufficiently close to one.
+\end{card}
+\end{frame}
+
+
+\begin{frame}
+\begin{cardTiny}
+Representation of the result for the PD:
+\end{cardTiny}
+
+\cardImg{./i/col_GamePayoffsLow.pdf}{0.7\textwidth}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Folk Theorem as a Negative Results]
+    For applied work though, the folk theorem is essentially theory throwing up its hand.
+    
+    So long as the outcome is rationalizable, if we care enough about the future, anything can happen!
+\end{card}\pause 
+
+\begin{card}[Experiments as a Selection Tool]
+    Using behavioral data to derive and refine selection criteria when theory has \textbf{too many} predictions
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Behavioral Equilibrium Selection}
+\begin{card}
+ Idea is to provide some guidance on \emph{which} equilibrium is likely to be selected when theory has \textbf{too many} predictions
+ \end{card}    
+\begin{card}
+To a degree, extant data from the fields can help us understand and test equilibrium selection in the current environment.  However looking at how the world \emph{is} can lead to limitations. We tend to use theory to understand how the world might be under some counterfactual. But  selection over the counterfactual can be shift, where selection is often a maintained assumption and can have qualitative effects. Would like to have selection devices that like theory, are responsive to the primitives
+ \end{card}
+\end{frame}
+
+\begin{frame}{Behavioral Equilibrium Selection}
+     \begin{card}
+    So, while experiments within a specific model/context can help to examine selection in a more-tightly defined domain, flexible, theory-driven (and empirically verified) criteria are the moon shot; while potentially less accurate,  they can be more useful in providing rules-of-thumb across many domains
+    \end{card}
+\end{frame}
+
+\begin{frame}{Motivation of the Issue in IO}
+\begin{card}
+    Market data is typically used to estimate primitives in a structural model 
+        \begin{itemize}
+            \item For example, demand parameters in the demand/profit function, etc.
+        \end{itemize}
+\end{card}
+        \pause
+\begin{card} Collusion is often an equilibrium possibility  (generically in most oligopoly settings with long-lived firms), and so there are selection issues
+        \begin{itemize}
+            \item Typically solved by focusing on stationary equilibria
+            \item Though researchers typically can motivate the selection assumption by appealing to the data 
+         \end{itemize}
+\end{card}         
+         \pause
+    \begin{card}
+    However, after estimation, IO papers will then examine the effects of policy-relevant counterfactuals. But the selection assumptions in the estimation are then typically maintained in the counterfactual
+    \end{card}
+\end{frame}
+
+\begin{frame}{Motivation}
+    \begin{card}
+        \begin{itemize}
+            \item Recent experimental work has helped to develop empirical criteria for selection within a simple environment where collusion is possible: Infinitely repeated PD
+            \item While it is a useful first step, an infinitely repeated PD abstracts from features that are relevant in many applications.
+        \end{itemize}
+    \end{card}
+\end{frame}
+
+
+\begin{frame}{Motivating Fable}
+    \begin{card}
+     Consider a Bertrand market with standard linear inverse demand ($Q(p)=A-p$) and a large number of competing firms, $N$.
+    \end{card} 
+ 
+    \begin{card}
+     Firms are pushing for more merger-friendly legislation; likely steady-state outcome would be two large firms remaining
+    \end{card}
+\end{frame}
+\begin{frame}{Motivating Fable}
+\begin{card}
+Antitrust authority vetting whether to allow consolidation:
+        \begin{itemize}
+            \item Firms convincingly argue that marginal costs will be reduced in consolidation through increased efficiencies with larger market shares
+            \item Two Aesop-Corp Management Consultants (a \emph{Stork} and a \emph{Fox}) provide two views on the likely effects
+        \end{itemize}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Motivating Fable}
+\begin{card}
+ Everyone agrees  that consolidation from $N$ firms to two will reduce the surviving firms marginal costs by $\Delta c$
+\end{card}
+\begin{card}[Stork]
+ Models the environment with the stationary non-collusive equilibrium (the MPE)
+        \begin{itemize}
+            \item \textbf{Eqbm:} $p^{\star}_{\text{MPE}}=c$ 
+            \item \textbf{Comp Static:} consolidation causes prices to fall by $\Delta c$
+        \end{itemize}
+\end{card}
+
+\end{frame}
+
+\begin{frame}{Motivating Fable}
+\begin{card}
+ Everyone agrees  that consolidation from $N$ firms to two will reduce the surviving firms marginal costs by $\Delta c$
+\end{card}
+\begin{card}[Fox]
+Models the firms as dynamically colluding (=profit maximizing SPE)
+    \begin{itemize}
+            \item \textbf{Eqbm:} $p^{\star}_{\text{SPE}}=\tfrac{1}{2}\left(A+c\right)$
+            \item \textbf{Comp Static:} consolidation causes prices to fall by $\tfrac{1}{2}\Delta c$
+        \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Motivating Fable}
+\begin{card} Though they differ over the quantitative benefits---and use two distinct methodologies---both the \emph{Fox} and the \emph{Stork} agree that industry consolidation is in the public interest, and consolidation occurs 
+\end{card}\pause
+\begin{card} Contrary to both expert's predictions,prices shoot up after the merger! While both consultants have a thread of the truth, neither can reveal it on their own
+    \end{card}
+\end{frame}
+
+\begin{frame}{Motivating Fable}
+    \begin{card}
+Equilibrium-selection can move with the policy comparative static (here shifts in competition)
+    \begin{itemize}
+        \item \textbf{Eqbm with $N$ firms:} Collusion too hard to coordinate on;  $p^{\star}(N)=c$
+        \item \textbf{Eqbm with 2 firms:} tacit collusion easier, $p^{\star}(2)=\tfrac{1}{2}(A+c-\Delta c)$
+        \item \textbf{Comp static:} Price increases by $\tfrac{1}{2}(A-c-\Delta c)$ 
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Motivating Example}
+    \begin{card}
+         Moral from the fable is that failing to account/examine differential equilibrium selection across the counterfactual can have qualitative effects: It is not just \emph{which} equilibrium to focus on, but how to change that selection assumption within the analysis
+ \end{card}
+
+\begin{card}        
+       As we saw in the reading for last week, the literature has made substantial  progress understanding equilibrium selection within the canonical infinite-horizon repeated PD (RPD). But questions remain over how this might extend to richer settings
+\end{card}
+\end{frame}
+
+\begin{frame}{Predictive Selection}
+    \centering \cardImg{./i/EmptyGraph1.pdf}{0.6\textwidth}
+\end{frame}
+
+\begin{frame}{Theoretical Criterion 1: Risk Dominance}
+    \begin{card}
+Consider stag-hunt game ($U>u,s>0,$ $U-u>x>0$):
+    \begin{center}%
+        \begin{tabular}{c|c|c|c}
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{$C$} & \multicolumn{1}{c}{$D$} & \\ 
+        \cline{2-3} \cline{3-3} 
+        $C$ & $U,U$ & $u-s,u+x$ & \\ 
+        \cline{2-3} \cline{3-3} 
+        $D$ & $u+x,u-s$ & $u,u$ & \\ 
+        \cline{2-3} \cline{3-3} 
+        \end{tabular}
+    \end{center}
+\end{card}
+\begin{card}
+ The Nash outcome $(C,C)$ is risk-dominant if it is optimal to choose $C$
+        when the other party is believed to be 50/50 over C/D:
+        \[
+        U-u>x+s.
+        \]
+    \end{card}
+\end{frame}
+
+\begin{frame}{Theoretical Criterion 2: Basin of Attraction}
+\begin{card}
+Stag-hunt game ($U>u,s>0,$ $U-u>x>0$)
+    \begin{center}%
+        \begin{tabular}{c|c|c|c}
+            \multicolumn{1}{c}{} & \multicolumn{1}{c}{$C$} & \multicolumn{1}{c}{$D$} & \\ 
+            \cline{2-3} \cline{3-3} 
+            $C$ & $U,U$ & $u-s,u+x$ & \\ 
+            \cline{2-3} \cline{3-3} 
+            $D$ & $u+x,u-s$ & $u,u$ & \\ 
+            \cline{2-3} \cline{3-3} 
+        \end{tabular}
+    \end{center}
+\end{card}
+\begin{card}
+ \textbf{Basin of attraction}, critical probability of other cooperating when agent becomes indifferent
+         \[
+         p^{\star}=\frac{(u+s)}{(U-u-x)+(u+s)}.
+        \]
+\end{card}
+\end{frame}
+
+\begin{frame}{Theoretical Criterion 2: Basin of Attraction}
+\begin{card}
+Stag-hunt game ($U>u,s>0,$ $U-u>x>0$)
+    \begin{center}%
+        \begin{tabular}{c|c|c|c}
+            \multicolumn{1}{c}{} & \multicolumn{1}{c}{$C$} & \multicolumn{1}{c}{$D$} & \\ 
+            \cline{2-3} \cline{3-3} 
+            $C$ & $U,U$ & $u-s,u+x$ & \\ 
+            \cline{2-3} \cline{3-3} 
+            $D$ & $u+x,u-s$ & $u,u$ & \\ 
+            \cline{2-3} \cline{3-3} 
+        \end{tabular}
+    \end{center}
+\end{card}
+
+\begin{card}
+Basin forms a continuous measure, with greater coordination on cooperation predicted the lower is $p^{\star}$. Can use the basin to recover the coarser risk dominance relationship:
+    \begin{itemize}
+        \item $p^{\star}<\nicefrac{1}{2}\Leftrightarrow (C,C) $ risk dominates $D,D$
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Experiments on Equilibrium Selection}
+    \begin{card}
+ This construction can also be applied to the normal-form of repeated games where we generically have multiple equilibria (Blonski \& Spagnolo, 2015)
+ \end{card}
+ 
+\begin{card} 
+Examine an extreme pair of extensive-form strategies:
+       \begin{itemize}
+           \item \textbf{Collusion}: History-dependent, Grim trigger
+           \item \textbf{Non-Collusion}: History-independent, stage-game Nash
+       \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Canonical dynamic environment: 2-player RPD}
+\begin{card}
+PD stage-game ($U>u$,$t,s>0$)
+\begin{center}%
+        \begin{tabular}{c|c|c|c}
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{$C$} & \multicolumn{1}{c}{$D$} & \\ 
+        \cline{2-3} \cline{3-3} 
+        $C$ & $U,U$ & $u-s,U+t$ & \\ 
+        \cline{2-3} \cline{3-3} 
+        $D$ & $U+t,u-s$ & $u,u$ & \\ 
+        \cline{2-3} \cline{3-3} 
+        \end{tabular}
+    \end{center}
+\end{card}    
+
+\begin{card}
+ Game is played repeatedly in a fixed player pair, with a $1-\delta$ chance that each period is the supergame's last. Repeated-game strategies: 
+        \begin{itemize}
+            \item Grim-trigger
+            \item Always-defect
+        \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Discounted-value: 2-player PD}
+\begin{card}
+Repeated PD in Normal form ($U>u$,$t,s>0, 1>\delta>0$)
+    \begin{center}%
+        \begin{tabular}{c|c|c|c}
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{Grim ($p$)} & \multicolumn{1}{c}{All-D ($1-p$)} & \\ 
+        \cline{2-3} \cline{3-3} 
+        Grim & $U$ & $-(1-\delta)\cdot s+u$ & \\ 
+        \cline{2-3} \cline{3-3} 
+        All-D & $(1-\delta)\cdot(U-u+t)+u$ & $u$ & \\ 
+        \cline{2-3} \cline{3-3} 
+        \end{tabular}
+    \end{center}
+\end{card}    
+ 
+ \begin{card}Indifference between Grim and All-D defines basin size
+        \[
+        p^{\star}(s^{\prime},t^{\prime},\delta)=\frac{(1-\delta)\cdot s^{\prime}}{\delta-(1-\delta)\cdot t^{\prime}},
+        \]
+        for $s^{\prime}=\tfrac{s}{U-u}$ and  $t^{\prime}=\tfrac{t}{U-u}.$
+\end{card}
+\end{frame}
+
+\begin{frame}{Experimental Results for Repeated PD game}
+\begin{card}
+     \[
+        p^{\star}(s^{\prime},t^{\prime},\delta)=\frac{(1-\delta)\cdot s^{\prime}}{\delta-(1-\delta)\cdot t^{\prime}}
+        \]
+\end{card}
+     \begin{card}
+ Dal Bo and Frechette meta-study comparative statics:
+        \begin{itemize}
+            \item Discount Rate: $\delta\uparrow \Rightarrow \text{Coop}\uparrow$ \hspace{0.19\textwidth} ($p^\star\downarrow$)
+            \item Temptation, $t^\prime\uparrow\Rightarrow\text{Coop}\downarrow$ \hspace{0.235\textwidth}($p^\star\uparrow$)
+            \item Sucker's payoff $s^\prime\uparrow\Rightarrow\text{Coop}\downarrow$ \hspace{0.20\textwidth}($p^\star\uparrow$)
+        \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}
+ \centering \cardImg{./i/dbfUni.pdf}{0.6\textwidth}
+\begin{card}
+Across a meta-study of repeated-PD games Dal Bo \& Frechette find the basin is highly predictive of selection
+\end{card}
+\end{frame}
+
+\begin{frame}
+ \centering \cardImg{./i/dbfOngoing.pdf}{0.6\textwidth}
+\begin{card}
+Across a meta-study of repeated-PD games Dal Bo \& Frechette find the basin is highly predictive of selection
+\end{card}
+\end{frame}
+
+\begin{frame}
+\centering \cardImg{./i/dbfOngoingSq.pdf}{0.6\textwidth}
+\begin{card}
+Across a meta-study of repeated-PD games Dal Bo \& Frechette find the basin is highly predictive of selection
+\end{card}
+\end{frame}
+
+
+\begin{frame}{Beyond the Inf. Rep. PD}
+\begin{card}
+Basin size for the non-collusive outcome (All-$D$) in the RPD looks at a purposefully stark setting:
+ \begin{itemize}
+     \item 2-players,  Constant stage-game,  Binary actions, etc. 
+ \end{itemize}
+\end{card}
+ 
+\begin{card} But the basin measure is readily extensible across many settings, where there is normally a ``standard'' way to extend it. 
+ 
+Experiments that provide behavioral data can help us validate these extensions, and where choices are required, can run horseraces between them. \end{card} 
+
+\end{frame}
+
+
+\begin{frame}{Generalizing to $N$}
+\begin{card}{Paper Questions:}
+    \begin{enumerate}
+        \item Does the basin of attraction generalize to $N$ player games?
+        \item Within this environment, is equilibrium sticky across the counterfactual due to experience?
+        \item Is the basin still predictive with explicit collusion?
+    \end{enumerate}
+\end{card}
+\end{frame}
+
+
+\begin{frame}{N-player environment}
+\begin{card}
+    \begin{center}%
+    \begin{tabular}{cc|>{\centering}p{0.2\textwidth}|>{\centering}p{0.2\textwidth}|c}
+     & \multicolumn{1}{c}{} & \multicolumn{2}{c}{\textbf{Others:} (N-1 actions)} & \\ 
+     & \multicolumn{1}{c}{} & \multicolumn{1}{>{\centering}p{0.2\textwidth}}{All-$C$} & \multicolumn{1}{>{\centering}p{0.2\textwidth}}{Not all $C$} & \\ 
+    \cline{3-4} \cline{4-4} 
+    \multirow{2}{*}{\textbf{You:}} & $C$ & \$20 & \$11-$x$ & \\ 
+    \cline{3-4} \cline{4-4} 
+     & $D$ & \$20+$x$ & \$11 & \\ 
+    \cline{3-4} \cline{4-4} 
+    \end{tabular}
+    \end{center}
+\end{card}
+  \begin{card}  
+    \begin{itemize}
+        \item Motivated by the Bertrand example
+        \item Stage-game information has the same cardinality for all $N$
+        \item Single parameter $x$ captures a loss from cooperating
+        \item Continuation probability of $\delta=\tfrac{3}{4}$.
+    \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}{N-player payoffs}
+\begin{card}
+    \begin{center}%
+    \begin{tabular}{cc|>{\centering}p{0.2\textwidth}|>{\centering}p{0.2\textwidth}|c}
+     & \multicolumn{1}{c}{} & \multicolumn{2}{c}{\textbf{Others:} (N-1 actions)} & \\ 
+     & \multicolumn{1}{c}{} & \multicolumn{1}{>{\centering}p{0.2\textwidth}}{All-$C$} & \multicolumn{1}{>{\centering}p{0.2\textwidth}}{Not all $C$} & \\ 
+    \cline{3-4} \cline{4-4} 
+    \multirow{2}{*}{\textbf{You:}} & $C$ & \$20 & \$11-$x$ & \\ 
+    \cline{3-4} \cline{4-4} 
+     & $D$ & \$20+$x$ & \$11 & \\ 
+    \cline{3-4} \cline{4-4} 
+    \end{tabular}
+    \end{center}
+\end{card}
+\begin{card} A symmetric belief that the other $N-1$ players \emph{independently} choose Grim Trigger with probability $p$ and All-D with probability $(1-p)$ implies a basin for All-D of: 
+\[p^{\star}_{\text{Ind}}(x,N;\delta)=\left(\frac{(1-\delta)}{\delta}\cdot\frac{x}{9}\right)^{\frac{1}{N-1}}=\left(\frac{x}{27}\right)^{\frac{1}{N-1}} \]
+    \end{card}
+\end{frame}
+
+\begin{frame}{Selection Hypotheses}
+\begin{card}
+  \begin{center}%
+    \begin{tabular}{cc|>{\centering}p{0.2\textwidth}|>{\centering}p{0.2\textwidth}|c}
+     & \multicolumn{1}{c}{} & \multicolumn{2}{c}{\textbf{Others:} (N-1 actions)} & \\ 
+     & \multicolumn{1}{c}{} & \multicolumn{1}{>{\centering}p{0.2\textwidth}}{All-$C$} & \multicolumn{1}{>{\centering}p{0.2\textwidth}}{Not all $C$} & \\ 
+    \cline{3-4} \cline{4-4} 
+    \multirow{2}{*}{\textbf{You:}} & $C$ & \$20 & \$11-$x$ & \\ 
+    \cline{3-4} \cline{4-4} 
+     & $D$ & \$20+$x$ & \$11 & \\ 
+    \cline{3-4} \cline{4-4} 
+    \end{tabular}
+    \end{center}
+    \end{card}
+    \begin{card}
+ First treatment dimension examines two values of $x$, either \$9 or \$1
+    \end{card}
+ 
+\end{frame}
+
+
+\begin{frame}{$x=\$9$}
+\begin{card}
+    \begin{center}%
+        \begin{tabular}{cc|>{\centering}p{0.15\paperwidth}|>{\centering}p{0.15\paperwidth}|c}
+         & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Other $N-1$ Players:} & \\ 
+         & \multicolumn{1}{c}{} & \multicolumn{1}{>{\centering}p{0.15\paperwidth}}{All $C$} & \multicolumn{1}{>{\centering}p{0.15\paperwidth}}{Not all $C$} & \\ 
+        \cline{3-4} \cline{4-4} 
+        \multirow{2}{*}{You:} & $C$ & \$20 & \$2 & \\ 
+        \cline{3-4} \cline{4-4} 
+         & $D$ & \$29 & \$11 & \\ 
+        \cline{3-4} \cline{4-4} 
+        \end{tabular}
+    \end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{$x=\$1$}
+   \begin{card}
+    \begin{center}%
+        \begin{tabular}{cc|>{\centering}p{0.15\paperwidth}|>{\centering}p{0.15\paperwidth}|c}
+         & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Other $N-1$ Players:} & \\ 
+         & \multicolumn{1}{c}{} & \multicolumn{1}{>{\centering}p{0.15\paperwidth}}{All $C$} & \multicolumn{1}{>{\centering}p{0.15\paperwidth}}{Not all $C$} & \\ 
+        \cline{3-4} \cline{4-4} 
+        \multirow{2}{*}{You:} & $C$ & \$20 & \$10 & \\ 
+        \cline{3-4} \cline{4-4} 
+         & $D$ & \$21 & \$11 & \\ 
+        \cline{3-4} \cline{4-4} 
+        \end{tabular}
+    \end{center}
+    \end{card}
+\end{frame}
+
+
+\begin{frame}{Design}
+\begin{card}
+Our second treatment dimension uses $N$ as an implicit variable in our prediction $p^\star=(\tfrac{x}{27})^\frac{1}{N-1}$ to fix two values for the basin measure given the temptation $x$.\end{card}
+\begin{card}
+    \begin{center}%
+        \begin{tabular}{cc|>{\centering}p{0.1\paperwidth}|>{\centering}p{0.1\paperwidth}|c}
+         & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Temptation} & \\ 
+         & \multicolumn{1}{c}{} & \multicolumn{1}{>{\centering}p{0.1\paperwidth}}{$x=\$9$} & \multicolumn{1}{>{\centering}p{0.1\paperwidth}}{$x=\$1$} & \\ 
+        \cline{3-4} \cline{4-4} 
+        \multirow{2}{*}{Ind Basin:} & $L=0.33$ & $N=2$ & $N=4$ & \\ 
+        \cline{3-4} \cline{4-4} 
+         & \textrm{$H=0.69$} & \textrm{$N=4$} & $N=10$ & \\ 
+        \cline{3-4} \cline{4-4} 
+        \end{tabular}
+    \end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}{Effective Design:}
+\begin{card}
+\begin{center}%
+        \begin{tabular}{cc|>{\centering}p{0.1\paperwidth}|>{\centering}p{0.1\paperwidth}|c}
+         & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Temptation} & \\ 
+         & \multicolumn{1}{c}{} & \multicolumn{1}{>{\centering}p{0.1\paperwidth}}{$x=\$9$} & \multicolumn{1}{>{\centering}p{0.1\paperwidth}}{$x=\$1$} & \\ 
+        \cline{3-4} \cline{4-4} 
+        \multirow{2}{*}{Ind Basin:} & $L=0.33$ & $N=2$ & $N=4$ & \\ 
+        \cline{3-4} \cline{4-4} 
+         & \textrm{$H=0.69$} & \textrm{$N=4$} & $N=10$ & \\ 
+        \cline{3-4} \cline{4-4} 
+        \end{tabular}
+    \end{center}
+\end{card}
+\begin{card}
+    Another way of extending the basin was with perfectly correlated behavior of the other players, in which case $p^\star_{\text{Cor}}=\tfrac{x}{27}$
+\end{card}
+\end{frame}
+
+\begin{frame}{Effective Design:}
+\begin{card}
+    Another way of extending the basin was with perfectly correlated behavior of the other players, in which case $p^\star_{\text{Cor}}=\tfrac{x}{27}$, a function of $x$ onlt
+\end{card}
+\begin{card}
+    \begin{center}%
+        \begin{tabular}{cc|>{\centering}p{0.23\textwidth}|>{\centering}p{0.23\textwidth}|c}
+         & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Cor. Basin} & \\ 
+         & \multicolumn{1}{c}{} & \multicolumn{1}{>{\centering}p{0.23\textwidth}}{$p^\star$} & \multicolumn{1}{>{\centering}p{0.23\textwidth}}{$p^\star-\Delta p_\text{C}$} & \\ 
+        \cline{3-4} \cline{4-4} 
+        \multirow{2}{*}{Ind Basin:} & $p^\star$ & $x=9;N=2$ & $x=1,N=4$ & \\ 
+        \cline{3-4} \cline{4-4} 
+         & \textrm{$p^\star+\Delta p_{\text{I}}$} & \textrm{$x=9,N=4$} & $x=1,N=10$ & \\ 
+        \cline{3-4} \cline{4-4} 
+        \end{tabular}
+    \end{center}
+\end{card}
+\end{frame}
+\begin{frame}
+\begin{card}{Experimental Details}
+    \begin{itemize}
+        \item Each treatment runs for 20 supergame repetitions (split into two identical parts)
+        \item Three sessions of each treatment running with 20/24 subjects (University
+        of Pittsburgh undergraduates)
+        \item Paid for last round only in two randomly selected supergames
+    \end{itemize}
+\end{card}
+\end{frame}
+
+
+
+\begin{frame}{Unilateral Cooperation ($t=1$, last 5 SG)}
+\begin{center}\cardImg{./i/dbfUniBlank}{0.7\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Unilateral Cooperation ($t=1$, last 5 SG)}
+\begin{center}\cardImg{./i/basinGraph_Block4.pdf}{0.7\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Joint Cooperation ($t=1$, last 5 SG)}
+\begin{center}\cardImg{./i/basinGraph_Joint_Block4.pdf}{0.7\textwidth}\end{center}
+\end{frame}
+
+\begin{frame}{Ongoing Cooperation ($t>1$, last 5 SG)}
+\begin{center}\cardImg{./i/basinGraph_Ongoing_Block4.pdf}{0.7\textwidth}\end{center}
+\end{frame}
+
+
+
+\begin{frame}{Decomposing the effects:}
+\begin{card}
+Look at ceteris paribus effects from variation in the correlated and independent basin measures:
+
+    \begin{center}
+        \begin{tabular}{ccc}
+        \toprule
+        &   \multicolumn{2}{c}{Decomp.} \\ 
+        \cmidrule{2-3}
+         &  $\Delta p^\star_{\text{Cor.}}$  &  $\Delta p^\star_{\text{Ind}}$ \\
+         \midrule
+         Initial &  \textbf{-0.357} & \textbf{-0.395} \\ 
+        ($t=1$) &  \SD{0.053} & \SD{0.048}    \\
+         Ongoing & -0.115  & \textbf{-0.293}  \\ 
+         ($t>1$)&  \SD{0.061} & \SD{0.051}    \\
+         \bottomrule
+        \end{tabular}
+    \end{center}
+\end{card}
+\end{frame}
+
+\begin{frame}
+    \begin{card}[Question 1:]
+     Does the basin of attraction for the selection of conditionally cooperative play generalize to $N$ players?
+            \begin{itemize}
+                \item \textbf{Yes, though with much greater adherence for ongoing cooperation}
+                \item \textbf{With large $N$ coordination failures are extensive even
+                for very small temptations}
+            \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Question 2:]
+     \textbf{Does experience at one equilibrium affect coordination after
+        a policy change?}
+        \end{card}
+\end{frame}
+
+\begin{frame}{Comparative Statics within a population}
+\begin{card}
+ So far have shown that the basin has some bite between-subject
+        \begin{itemize}
+            \item But this is an examination of two separate universes with different conditions
+        \end{itemize}
+\end{card}
+\begin{card}Motivating example soughts to understand differential equilibrium selection within the same market over the policy comparative static.
+
+ Beliefs about others may well be very sticky, and so experience of
+        others not using cooperative strategies may lead to persistence as
+        we change $N$
+\end{card}
+       
+\end{frame}
+
+\begin{frame}{Comparative Statics within a population}
+\begin{card} To address this, we add two within-subject treatments where we fix $x=\$9$ but change $N$ across the session:
+        \begin{itemize}
+            \item Ind. Basin $H\rightarrow L$ ($N=4\rightarrow 2$)
+            \item Ind. Basin $L\rightarrow H$ ($N=2\rightarrow 4$)
+        \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}{Between vs. Within Effects}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Within0.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Between vs. Within Effects}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Within1.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Between vs. Within Effects}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Within2.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Between vs. Within Effects}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Within3.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Between vs. Within Effects}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Within4.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Question 2:]
+Does experience at one equilibrium affect coordination after a policy change?
+        \begin{itemize}
+            \item \textbf{Steady-states look very similar in between/within comparison}
+            \item \textbf{Going from $4\rightarrow 2$ leads to an instant selection change we shift the policy variable}
+            \item \textbf{Going from $2\rightarrow 4$ leads to an slow descent}
+        \end{itemize}
+    \end{card}
+\end{frame}
+
+\begin{frame}
+\begin{card}[Question 3:]
+\textbf{With more players, can explicit collusion correct coordination
+        failures?}
+\end{card}
+
+\end{frame}
+
+\begin{frame}{Comparative Statics within a population}
+\begin{card}
+  Independent basin calculation considers each player choosing a strategy independently, but players may have coordination device that can generate correlation: \textbf{Explicit collusion}
+\end{card}
+\begin{card}Practically, where we see this is in cartels that control prices through meetings and checks on one another's behavior
+\end{card}
+\end{frame}
+
+\begin{frame}{Comparative Statics within a population}
+
+\begin{card} 
+We try to capture this idea by adding explicit pre-play communication before the supergame begins.
+\end{card}
+
+\begin{card} First half (1--10) the treatment is set at the parameterization with our worst performance ($N=4$, $x=\$9$), where  Chat is provided in the second half (11-20)
+\end{card}
+\end{frame}
+
+\begin{frame}{Example Chat}
+\begin{card}
+    \begin{itemize}{\small 		
+        \item[Chat 4:] pick green i need to buy dinner tn 		
+        \item[Chat 3:] lets all go green the first round and if someone doesnt do it we can all go red the round after 		
+        \item[Chat 1:] everyone pick green 		
+        \item[Chat 2:] dont be selfish guys. if you try to cheat there will be another round and itll be scrapped 		
+        \item[Chat 4:] yer 		
+        \item[Chat 1:] $<$Chat 1 has left$>$ 		
+        \item[Chat 2:] deal 		 }
+    \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Example Chat}
+\begin{card}
+    \begin{itemize}{\small 		
+        \item[...]  		
+        \item[Chat 3:] so does everyone PROmsie 		
+        \item[Chat 4:] promise. 		
+        \item[Chat 4:] $<$Chat 4 has left$>$ 		
+        \item[Chat 2:] pinky swear 		
+        \item[Chat 3:] promise 		
+        \item[Chat 3:] $<$Chat 3 has left$>$ 		
+        \item[Chat 2:] $<$Chat 2 has left$>$ }
+    \end{itemize}
+\end{card}
+\end{frame}
+\begin{frame}{Implicit vs. Explicit Communication}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Chat0.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Implicit vs. Explicit Communication}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Chat1.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+
+
+\begin{frame}{Implicit vs. Explicit Communication}
+    \begin{card}
+But maybe explicit communication just helps them coordinate on any outcome, even non-equilibrium things
+\end{card}\pause
+
+\begin{card} To answer this we run a second chat treatment where we make the collusive equilibrium knife-edge in terms of existence
+\begin{itemize}
+        \item Rather than manipulate $x$ we hold this constant across the comparisons, instead shift $\delta$  from $\tfrac{3}{4}$ to $\tfrac{1}{2}$
+            \item Existence for collusive SPE requires $\delta\geq\tfrac{1}{2}$
+        \end{itemize}
+\end{card}
+\end{frame}
+
+\begin{frame}{Implicit vs. Explicit Communication}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Chat1.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Implicit vs. Explicit Communication}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Chat2.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+\begin{frame}{Implicit vs. Explicit Communication}
+\begin{center}\cardImg{./i/MainTreat_Timeseries_Chat3.pdf}{0.9\textwidth}\end{center}
+\end{frame}
+
+% \begin{frame}{Implicit vs. Explicit Communication: Joint}
+%     \begin{center}
+%     \includegraphics<1>[width=0.9\textwidth]{./i/MainTreat_Timeseries_Joint_Chat.pdf}
+%     \end{center}
+% \end{frame}
+
+\begin{frame}
+\begin{card}[Question 3]
+ With more players, can explicit collusion correct coordination failures?
+        \begin{itemize}
+            \item \textbf{Explicit communication leads to near full cooperation when it is a robust SPE to cooperate}
+            \item \textbf{Explicit communication less successful SPE is knife edge }
+            \item \textbf{Indep. Basin only has bite for implicit collusion}
+        \end{itemize}
+    \end{card}
+\end{frame}
+\end{document}
